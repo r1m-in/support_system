@@ -10,24 +10,23 @@ class AppController extends Controller
 {
     public function users(Request $request)
     {
-        $users = [];
+        $users = collect();
 
         $data['search'] = ($request->get('q') ? $request->get('q') : '');
 
         $keyword = $data['search'];
 
-        if ($request->get('q')) {
-
-           $users = DB::connection('aws')->table('users')->latest();
-
-            $users->where(function ($query) use ($keyword) {
-                $query->where('name', 'LIKE', "%$keyword%")
-                    ->orWhere('id', 'LIKE', "%$keyword%")
-                    ->orWhere('app_user_id', 'LIKE', "%$keyword%")
-                    ->orWhere('phone', 'LIKE', "%$keyword%");
-            });
-
-            $users->get();
+        if ($keyword) {
+            $users = DB::connection('aws')
+                ->table('users')
+                ->where(function ($query) use ($keyword) {
+                    $query->where('name', 'LIKE', "%$keyword%")
+                        ->orWhere('id', 'LIKE', "%$keyword%")
+                        ->orWhere('app_user_id', 'LIKE', "%$keyword%")
+                        ->orWhere('phone', 'LIKE', "%$keyword%");
+                })
+                ->latest()
+                ->get();
         }
 
         $data['users']  = $users;
