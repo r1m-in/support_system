@@ -49,9 +49,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-
-            @dump($drivers)
+            </div> 
 
         </div>
     </div>

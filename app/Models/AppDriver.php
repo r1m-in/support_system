@@ -19,7 +19,7 @@ class AppDriver extends Model
 
    public function details()
    {
-      return $this->belongsTo(AppDriverDetail::class, 'driver_id', 'id');
+      return $this->hasOne(AppDriverDetail::class, 'driver_id', 'id');
    }
 
    // id, app_driver_id, name, email, phone, gender, dob, staff_id, city, referral_code, referred_by
