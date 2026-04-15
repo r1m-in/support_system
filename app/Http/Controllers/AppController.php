@@ -36,7 +36,7 @@ class AppController extends Controller
         return view('app.user');
     }
 
-     public function drivers(Request $request)
+    public function drivers(Request $request)
     {
         $drivers = collect();
 
@@ -48,7 +48,7 @@ class AppController extends Controller
             $drivers = AppDriver::latest()->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', "%$keyword%")
                     ->orWhere('id', 'LIKE', "%$keyword%")
-                    ->orWhere('app_user_id', 'LIKE', "%$keyword%")
+                    ->orWhere('app_driver_id', 'LIKE', "%$keyword%")
                     ->orWhere('phone', 'LIKE', "%$keyword%");
             })->latest()->get();
         }

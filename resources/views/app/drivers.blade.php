@@ -25,12 +25,11 @@
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
                             <th class="min-w-40px rounded-start text-center">ID</th>
-                            <th class="min-w-125px">App driver ID</th>
+                            <th class="min-w-125px">App Driver ID</th>
                             <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">E-Mail ID</th>
                             <th class="min-w-125px">Phone Number</th>
-                            <th class="min-w-125px text-center">Status</th>
-                            <th class="min-w-125px text-center">Provider</th>
+                            <th class="min-w-125px text-center">Status</th> 
                             <th class="min-w-100px text-center rounded-end">Actions</th>
                         </tr>
                     </thead>
@@ -43,7 +42,7 @@
                                 <td class="text-dark fw-bolder"> {{ $driver->phone }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->status }} </td> 
                                 <td class="text-center">
-                                   dfs
+                                   
                                    
                                 </td>
                             </tr>
