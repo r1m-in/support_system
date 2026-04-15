@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AppUser;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -17,7 +18,7 @@ class AppController extends Controller
 
         if ($request->get('q')) {
 
-           $users = AppUser::latest();
+           $users = DB::connection('aws')->table('users')->latest();
 
             $users->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', "%$keyword%")
