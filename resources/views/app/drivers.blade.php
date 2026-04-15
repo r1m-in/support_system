@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <x-slot name="title">App Users</x-slot>
+    <x-slot name="title">App Drivers</x-slot>
 
     <div class="card mb-5 mb-xl-8">
         <div class="card-header border-0 pt-5">
@@ -25,7 +25,7 @@
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
                             <th class="min-w-40px rounded-start text-center">ID</th>
-                            <th class="min-w-125px">App User ID</th>
+                            <th class="min-w-125px">App driver ID</th>
                             <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">E-Mail ID</th>
                             <th class="min-w-125px">Phone Number</th>
@@ -35,19 +35,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $user)
+                        @foreach ($drivers as $driver)
                             <tr>
-                                <td class="text-dark fw-bolder text-center"> {{ $user->id }} </td>
-                                <td class="text-dark fw-bolder text-center"> {{ $user->app_user_id }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->name }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->email }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->phone }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->status }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->provider }} </td>
+                                <td class="text-dark fw-bolder text-center"> {{ $driver->id }} </td>
+                                <td class="text-dark fw-bolder text-center"> {{ $driver->app_driver_id }} </td>
+                                <td class="text-dark fw-bolder"> {{ $driver->name }} </td> 
+                                <td class="text-dark fw-bolder"> {{ $driver->phone }} </td>
+                                <td class="text-dark fw-bolder"> {{ $driver->status }} </td> 
                                 <td class="text-center">
-                                    <a href="{{ route('app.user', $user->app_user_id) }}" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-eye"></i> View
-                                    </a>
+                                   dfs
+                                   
                                 </td>
                             </tr>
                         @endforeach
@@ -55,7 +52,7 @@
                 </table>
             </div>
 
-            @dump($users)
+            @dump($drivers)
 
         </div>
     </div>

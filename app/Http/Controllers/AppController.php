@@ -38,14 +38,14 @@ class AppController extends Controller
 
      public function drivers(Request $request)
     {
-        $users = collect();
+        $drivers = collect();
 
         $data['search'] = ($request->get('q') ? $request->get('q') : '');
 
         $keyword = $data['search'];
 
         if ($keyword) {
-            $users = AppDriver::latest()->where(function ($query) use ($keyword) {
+            $drivers = AppDriver::latest()->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', "%$keyword%")
                     ->orWhere('id', 'LIKE', "%$keyword%")
                     ->orWhere('app_user_id', 'LIKE', "%$keyword%")
@@ -53,8 +53,8 @@ class AppController extends Controller
             })->latest()->get();
         }
 
-        $data['users']  = $users;
+        $data['drivers']  = $drivers;
 
-        return view('app.users', $data);
+        return view('app.drivers', $data);
     }
 }
