@@ -21,8 +21,9 @@ class AppController extends Controller
 
             $users->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', "%$keyword%")
-                    ->orWhere('email', 'LIKE', "%$keyword%")
-                    ->orWhere('phone_number', 'LIKE', "%$keyword%");
+                    ->orWhere('id', 'LIKE', "%$keyword%")
+                    ->orWhere('app_user_id', 'LIKE', "%$keyword%")
+                    ->orWhere('phone', 'LIKE', "%$keyword%");
             });
 
             $users->paginate(10);
