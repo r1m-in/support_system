@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AppDriver extends Model
+class AppDriverDetail extends Model
 {
    protected $connection = 'aws';
-   protected $table = 'drivers';
+   protected $table = 'driver_details';
    protected $keyType = 'string';
 
    protected $guarded = ['*'];
@@ -15,11 +15,6 @@ class AppDriver extends Model
    public function appCity()
    {
       return $this->belongsTo(AppCity::class, 'city', 'id');
-   }
-
-   public function details()
-   {
-      return $this->belongsTo(AppDriverDetail::class, 'driver_id', 'id');
    }
 
    // id, app_driver_id, name, email, phone, gender, dob, staff_id, city, referral_code, referred_by

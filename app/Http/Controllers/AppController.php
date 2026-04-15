@@ -20,7 +20,6 @@ class AppController extends Controller
         if ($keyword) {
             $users = AppUser::latest()->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', "%$keyword%")
-                    ->orWhere('id', 'LIKE', "%$keyword%")
                     ->orWhere('app_user_id', 'LIKE', "%$keyword%")
                     ->orWhere('phone', 'LIKE', "%$keyword%");
             })->latest()->get();
@@ -48,7 +47,6 @@ class AppController extends Controller
         if ($keyword) {
             $drivers = AppDriver::latest()->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', "%$keyword%")
-                    ->orWhere('id', 'LIKE', "%$keyword%")
                     ->orWhere('app_driver_id', 'LIKE', "%$keyword%")
                     ->orWhere('phone', 'LIKE', "%$keyword%");
             })->latest()->get();
@@ -57,5 +55,11 @@ class AppController extends Controller
         $data['drivers']  = $drivers;
 
         return view('app.drivers', $data);
+    }
+
+    public function driver($id)
+    {
+        $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
+        return view('app.driver', $data);
     }
 }

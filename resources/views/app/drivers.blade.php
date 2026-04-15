@@ -24,27 +24,26 @@
                 <table class="table align-middle gs-0 gy-4 text-center table-hover">
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
-                            <th class="min-w-40px rounded-start text-center">ID</th>
-                            <th class="min-w-125px">App Driver ID</th>
+                            <th class="min-w-40px rounded-start text-center">App Driver ID</th>
                             <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">E-Mail ID</th>
                             <th class="min-w-125px">Phone Number</th>
-                            <th class="min-w-125px text-center">Status</th> 
+                            <th class="min-w-125px text-center">Status</th>
                             <th class="min-w-100px text-center rounded-end">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($drivers as $driver)
                             <tr>
-                                <td class="text-dark fw-bolder text-center"> {{ $driver->id }} </td>
                                 <td class="text-dark fw-bolder text-center"> {{ $driver->app_driver_id }} </td>
-                                <td class="text-dark fw-bolder"> {{ $driver->name }} </td> 
+                                <td class="text-dark fw-bolder"> {{ $driver->name }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->phone }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->email }} </td>
-                                <td class="text-dark fw-bolder"> {{ $driver->status }} </td> 
+                                <td class="text-dark fw-bolder"> {{ $driver->status }} </td>
                                 <td class="text-center">
-                                   
-                                   
+                                    <a href="{{ route('app.driver', $driver->id) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

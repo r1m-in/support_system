@@ -23,10 +23,15 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
 
     Route::name('app.')->prefix('app')->group(function () {
+
         Route::get('users', [AppController::class, 'users'])->name('users');
         Route::get('user/{id}', [AppController::class, 'user'])->name('user');
+
         Route::get('drivers', [AppController::class, 'drivers'])->name('drivers');
+        Route::get('driver/{id}', [AppController::class, 'driver'])->name('driver');
+
         Route::get('vehicles', [AppController::class, 'vehicles'])->name('vehicles');
+        Route::get('vehicle/{id}', [AppController::class, 'vehicle'])->name('vehicle');
     });
 
 
