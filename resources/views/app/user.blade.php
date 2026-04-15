@@ -6,7 +6,7 @@
 
 
         <div class="card shadow">
-            <div class="card-body p-2">
+            <div class="card-body">
 
                 <div class="d-flex flex-wrap flex-sm-nowrap">
                     <div class="flex-grow-1">
@@ -14,7 +14,7 @@
                             <span class="bullet bullet-vertical h-40px bg-primary"></span>
                             <div class="flex-grow-1 mx-4">
                                 <h2 class="fs-2 mb-0"> User Details</h2>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -46,5 +46,5 @@
             </div>
         </div>
 
-    </x-user-layout> 
+    </x-user-layout>
 </x-admin-layout>
