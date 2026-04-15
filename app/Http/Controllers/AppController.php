@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AppDriver;
 use App\Models\AppUser;
+use App\Models\AppVehicle;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -61,5 +62,30 @@ class AppController extends Controller
     {
         $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
         return view('app.driver', $data);
+    }
+
+    public function vehicles(Request $request)
+    {
+        $vehicles = collect();
+
+        $data['search'] = ($request->get('q') ? $request->get('q') : '');
+
+        $keyword = $data['search'];
+
+        if ($keyword) {
+            $vehicles = AppVehicle::latest()->where(function ($query) use ($keyword) {
+                $query->where('registration_number', 'LIKE', "%$keyword%");
+            })->latest()->get();
+        }
+
+        $data['vehicles']  = $vehicles;
+
+        return view('app.vehicles', $data);
+    }
+
+    public function vehicle($id)
+    {
+        $data['vehicle'] = AppVehicle::where('id', $id)->firstOrFail();
+        return view('app.vehicle', $data);
     }
 }
