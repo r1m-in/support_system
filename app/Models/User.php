@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 use App\Enums\User\Status as UserStatus;
 use Illuminate\Support\Facades\Storage;
 
-#[Fillable(['name', 'email', 'password', 'phone_number', 'status'])]
+#[Fillable(['code', 'name', 'email', 'password', 'phone_number', 'status'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {

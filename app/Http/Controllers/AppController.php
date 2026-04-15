@@ -33,7 +33,8 @@ class AppController extends Controller
 
     public function user($id)
     {
-        return view('app.user');
+        $data['user'] = AppUser::where('id', $id)->firstOrFail();
+        return view('app.user', $data);
     }
 
     public function drivers(Request $request)

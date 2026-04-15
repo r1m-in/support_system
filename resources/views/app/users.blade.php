@@ -24,28 +24,24 @@
                 <table class="table align-middle gs-0 gy-4 text-center table-hover">
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
-                            <th class="min-w-40px rounded-start text-center">ID</th>
-                            <th class="min-w-125px">App User ID</th>
+                            <th class="min-w-40px rounded-start text-center">App User ID</th>
                             <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">E-Mail ID</th>
                             <th class="min-w-125px">Phone Number</th>
                             <th class="min-w-125px text-center">Status</th>
-                            <th class="min-w-125px text-center">Provider</th>
                             <th class="min-w-100px text-center rounded-end">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td class="text-dark fw-bolder text-center"> {{ $user->id }} </td>
                                 <td class="text-dark fw-bolder text-center"> {{ $user->app_user_id }} </td>
                                 <td class="text-dark fw-bolder"> {{ $user->name }} </td>
                                 <td class="text-dark fw-bolder"> {{ $user->email }} </td>
                                 <td class="text-dark fw-bolder"> {{ $user->phone }} </td>
                                 <td class="text-dark fw-bolder"> {{ $user->status }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->provider }} </td>
                                 <td class="text-center">
-                                    <a href="{{ route('app.user', $user->app_user_id) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('app.user', $user->id) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-eye"></i> View
                                     </a>
                                 </td>
@@ -54,9 +50,6 @@
                     </tbody>
                 </table>
             </div>
-
-            @dump($users)
-
         </div>
     </div>
 

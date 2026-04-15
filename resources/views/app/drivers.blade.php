@@ -40,6 +40,7 @@
                                 <td class="text-dark fw-bolder text-center"> {{ $driver->app_driver_id }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->name }} </td> 
                                 <td class="text-dark fw-bolder"> {{ $driver->phone }} </td>
+                                <td class="text-dark fw-bolder"> {{ $driver->email }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->status }} </td> 
                                 <td class="text-center">
                                    
