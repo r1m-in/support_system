@@ -17,16 +17,12 @@ class AppController extends Controller
         $keyword = $data['search'];
 
         if ($keyword) {
-            $users = DB::connection('aws')
-                ->table('users')
-                ->where(function ($query) use ($keyword) {
-                    $query->where('name', 'LIKE', "%$keyword%")
-                        ->orWhere('id', 'LIKE', "%$keyword%")
-                        ->orWhere('app_user_id', 'LIKE', "%$keyword%")
-                        ->orWhere('phone', 'LIKE', "%$keyword%");
-                })
-                ->latest()
-                ->get();
+            $users = AppUser::latest()->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', "%$keyword%")
+                    ->orWhere('id', 'LIKE', "%$keyword%")
+                    ->orWhere('app_user_id', 'LIKE', "%$keyword%")
+                    ->orWhere('phone', 'LIKE', "%$keyword%");
+            })->latest()->get();
         }
 
         $data['users']  = $users;
