@@ -36,13 +36,10 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td class="text-dark fw-bolder text-center"> {{ $user->id }} </td>
-
+                                <td class="text-dark fw-bolder text-center"> {{ $user->app_user_id }} </td>
                                 <td class="text-dark fw-bolder"> {{ ucfirst($user->name) }} </td>
                                 <td class="text-dark fw-bolder"> {{ $user->email }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->phone_number }} </td>
-                                <td class="text-center">
-                                    <span class="badge badge-dark fs-7 fw-bolder">{{ $user->role }}</span>
-                                </td>
+                                <td class="text-dark fw-bolder"> {{ $user->phone }} </td>
                                 <td class="text-center">
                                     <a href="{{ route('app.user', $user->id) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-eye"></i> View

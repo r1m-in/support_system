@@ -26,7 +26,7 @@ class AppController extends Controller
                     ->orWhere('phone', 'LIKE', "%$keyword%");
             });
 
-            $users->paginate(10);
+            $users->get();
         }
 
         $data['users']  = $users;

@@ -39,21 +39,6 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td class="text-dark fw-bolder text-center"> {{ $user->id }} </td>
-                                <td class="text-dark">
-                                    @switch($user->provider)
-                                        @case(\App\Enums\User\Provider::DIRECT)
-                                            <span class="badge badge-dark fs-7 fw-bolder">Direct</span>
-                                        @break
-                                        @case(\App\Enums\User\Provider::GOOGLE)
-                                            <span class="badge badge-danger fs-7 fw-bolder">Google</span>
-                                        @break 
-                                        @case(\App\Enums\User\Provider::FACEBOOK)
-                                            <span class="badge badge-primary fs-7 fw-bolder">Facebook</span>
-                                        @break 
-                                        @default
-                                            ERROR
-                                    @endswitch
-                                </td>
                                 <td class="text-dark fw-bolder"> {{ ucfirst($user->name) }} </td>
                                 <td class="text-dark fw-bolder"> {{ $user->email }} </td>
                                 <td class="text-dark fw-bolder"> {{ $user->phone_number }} </td>
