@@ -50,9 +50,7 @@
                     </tbody>
                 </table>
             </div>
-            @if ($users)
-                {{ $users->appends(request()->input())->onEachSide(3)->links() }}
-            @endif
+          
         </div>
     </div>
 

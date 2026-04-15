@@ -85,8 +85,8 @@
 
 
                             <div class="menu-item">
-                                <a class="menu-link @if (request()->routeIs('service.consultations')) active @endif"
-                                    href="{{ route('dashboard') }}">
+                                <a class="menu-link @if (request()->routeIs('app.users')) active @endif"
+                                    href="{{ route('app.users') }}">
                                     <span class="menu-icon">
                                         <span class="svg-icon svg-icon-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -105,8 +105,8 @@
                             </div>
 
                             <div class="menu-item">
-                                <a class="menu-link @if (request()->routeIs('service.consultations')) active @endif"
-                                    href="{{ route('dashboard') }}">
+                                <a class="menu-link @if (request()->routeIs('app.drivers')) active @endif"
+                                    href="{{ route('app.drivers') }}">
                                     <span class="menu-icon">
                                         <span class="svg-icon svg-icon-2">
 
@@ -125,8 +125,8 @@
                             </div>
 
                             <div class="menu-item">
-                                <a class="menu-link @if (request()->routeIs('service.consultations')) active @endif"
-                                    href="{{ route('dashboard') }}">
+                                <a class="menu-link @if (request()->routeIs('app.vehicles')) active @endif"
+                                    href="{{ route('app.vehicles') }}">
                                     <span class="menu-icon">
                                         <span class="svg-icon svg-icon-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
