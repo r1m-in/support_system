@@ -14,8 +14,9 @@
                                 <th class="min-w-125px">Created At</th>
                                 <th class="min-w-125px">Status</th>
                                 <th class="min-w-125px">Reason</th>
-                                <th class="min-w-125px">Driver Name</th> 
-                                <th class="min-w-100px text-center rounded-end">Fare</th>
+                                <th class="min-w-125px">Driver Name</th>
+                                <th class="min-w-125px">Fare</th>
+                                <th class="min-w-100px text-center rounded-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,9 +34,14 @@
                                             N/A
                                         @endif
                                     </td>
-                                    <td>{{ $ride->request->distance }}</td>
-
                                     <td>{{ $ride->fare }}</td>
+                                    <td>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#createTicket"
+                                            class="btn btn-primary btn-sm"
+                                            data-type="{{ \App\Enums\Ticket\Type::USER_RIDE->value }}"
+                                            data-key="{{ $ride->id }}"><i class="fas fa-ticket me-2"></i> Create
+                                            Ticket</button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
