@@ -14,7 +14,7 @@ class AppUserRide extends Model
 
    public function request()
    {
-      return $this->belongsTo(AppCity::class, 'request_id', 'id');
+      return $this->belongsTo(AppRequest::class, 'request_id', 'id');
    }
 
 }
