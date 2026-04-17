@@ -11,9 +11,11 @@
                             <tr class="fw-bolder text-white bg-dark">
                                 <th class="min-w-40px rounded-start text-center">From</th>
                                 <th class="min-w-125px">To</th>
+                                <th class="min-w-125px">Created At</th>
                                 <th class="min-w-125px">Status</th>
                                 <th class="min-w-125px">Reason</th>
-                                <th class="min-w-125px text-center">Distance</th>
+                                <th class="min-w-125px">Driver Name</th>
+                                <th class="min-w-125px text-center">Fare</th>
                                 <th class="min-w-100px text-center rounded-end">Duration</th>
                             </tr>
                         </thead>
@@ -22,10 +24,14 @@
                                 <tr>
                                     <td>{{ $ride->request->from_location }}</td>
                                     <td>{{ $ride->request->to_location }}</td>
+                                    <td>{{ $ride->created_at }}</td>
                                     <td>{{ $ride->request->status }}</td>
                                     <td>{{ $ride->request->reason }}</td>
+                                    <td>{{ $ride->request->driver }}</td>
                                     <td>{{ $ride->request->distance }}</td>
-                                    <td>{{ $ride->request->duration }}</td>
+                                    <td>{{ $ride->driver->name }}</td>
+                                    <td>{{ $ride->fare }}</td>
+                                    <td>@json($ride->driver_details)</td>
                                 </tr>
                             @endforeach
                         </tbody>
