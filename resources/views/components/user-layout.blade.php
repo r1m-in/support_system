@@ -20,12 +20,13 @@
          <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
 
              <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6 active"
+                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.user')) active @endif"
                      href="{{ route('app.user', $user->id) }}">Overview</a>
              </li>
 
              <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6" href="{{ route('app.user_rides', $user->id) }}">Ride
+                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.user_rides')) active @endif"
+                     href="{{ route('app.user_rides', $user->id) }}">Ride
                      History</a>
              </li>
 
@@ -57,7 +58,7 @@
                  <form method="POST">
                      @csrf
 
-                     <input type="hidded" name="type" id="type" />
+                     <input type="hidden" name="type" id="type" />
 
                      <div class="form-group mb-4">
                          <label for="name" class="required form-label">Name </label>
@@ -94,3 +95,14 @@
          </div>
      </div>
  </div>
+
+ <x-slot:scripts>
+     <script>
+         var createTicket = document.getElementById('createTicket')
+         createTicket.addEventListener('show.bs.modal', function(event) {
+             var button = event.relatedTarget
+             createTicket.querySelector('#type').value = button.getAttribute('data-type')
+             createTicket.querySelector('#key').value = button.getAttribute('data-key')
+         });
+     </script>
+ </x-slot:scripts>

@@ -41,7 +41,7 @@ class AppController extends Controller
     public function user_rides($id)
     {
         $data['user'] = AppUser::where('id', $id)->firstOrFail();
-        $data['rides'] = AppUserRide::where('created_by')->get();
+        $data['rides'] = AppUserRide::where('created_by', $id)->get();
 
         return view('app.user_rides', $data);
     }
