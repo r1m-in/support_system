@@ -84,7 +84,7 @@
 
                      <div class="form-group mb-4">
                          <label class="form-label required">Reason</label>
-                         <select name="reason" id="reasons" class="from-select">
+                         <select name="reason" id="reasons" class="form-select">
                              <option value="">Select Reason</option>
                          </select>
                      </div>
@@ -145,7 +145,7 @@
                      optionsHtml += `<option value="${safeValue}">${safeValue}</option>`;
                  });
                  optionsHtml += '<option value="Other">Other</option>'
-                 $('#reasons').append(optionsHtml);
+                 $('#reasons').html(optionsHtml);
              }
          });
      </script>
