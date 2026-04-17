@@ -39,13 +39,17 @@ class AppController extends Controller
         return view('app.user', $data);
     }
 
-    public function user_rides($id)
+    public function user_rides(Request $request, $id)
     {
         $data['user'] = AppUser::where('id', $id)->firstOrFail();
 
         $data['statuses'] = AppUserRide::where('created_by', $id)->select('status')->distinct()->pluck('status');
 
-        $data['rides'] = AppUserRide::where('created_by', $id)->get();
+        $rides = AppUserRide::latest()->where('created_by', $id);
+
+        
+
+        $data['rides'] = $rides->paginate(8);
 
 
         return view('app.user_rides', $data);

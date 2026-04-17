@@ -10,12 +10,13 @@
                 <div class="card-toolbar">
                     <form method="GET" class="input-group mb-3">
                         <select class="form-select rounded-0 rounded-start">
-                            <option value="">All Statuses</option>
+                            <option name="status" value="">All Statuses</option>
                             @foreach ($statuses as $status)
-                                <option value="{{ $status }}">{{ $status }}</option>
+                                <option @if(request()->status == $status) selected @endif value="{{ $status }}">{{ $status }}</option>
                             @endforeach
                         </select>
-                        <input class="form-control rounded-0" placeholder="Pick dates" name="dates" id="date_ranger" />
+                        <input class="form-control rounded-0" placeholder="Pick dates" name="dates"
+                            id="date_ranger" />
                         <div class="input-group-append">
                             <button class="btn btn-primary rounded-0 rounded-end" type="submit"> <i
                                     class="fas fa-search"></i></button>
@@ -72,10 +73,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    </tbody>
-                    </table>
                 </div>
 
+                {{ $rides->appends(request()->input())->onEachSide(3)->links() }}
             </div>
         </div>
 
