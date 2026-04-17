@@ -5,6 +5,8 @@
 
         @dump($rides)
 
+        @dump($requests)
+
 
     </x-user-layout>
 </x-admin-layout>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AppDriver;
+use App\Models\AppRequest;
 use App\Models\AppUser;
 use App\Models\AppUserRide;
 use App\Models\AppVehicle;
@@ -42,6 +43,7 @@ class AppController extends Controller
     {
         $data['user'] = AppUser::where('id', $id)->firstOrFail();
         $data['rides'] = AppUserRide::where('created_by', $id)->get();
+        $data['requests'] = AppRequest::where('created_by', $id)->get();
 
         return view('app.user_rides', $data);
     }
