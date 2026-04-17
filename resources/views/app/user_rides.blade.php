@@ -9,10 +9,11 @@
                 </div>
                 <div class="card-toolbar">
                     <form method="GET" class="input-group mb-3">
-                        <select class="form-select rounded-0 rounded-start">
-                            <option name="status" value="">All Statuses</option>
+                        <select name="status" class="form-select rounded-0 rounded-start">
+                            <option value="">All Statuses</option>
                             @foreach ($statuses as $status)
-                                <option @if(request()->status == $status) selected @endif value="{{ $status }}">{{ $status }}</option>
+                                <option @if (request()->status == $status) selected @endif value="{{ $status }}">
+                                    {{ $status }}</option>
                             @endforeach
                         </select>
                         <input class="form-control rounded-0" placeholder="Pick dates" name="dates"
