@@ -16,7 +16,10 @@
                                 <td>Distance: {{ $ride->request->distance }}</td>
                                 <td>Duration: {{ $ride->request->duration }}</td>
                                 <td>
-                                    @json($request->request)
+                                    @json($ride->request)
+                                </td>
+                                <td>
+                                    @json($ride)
                                 </td>
                             </tr>
                         @endforeach
