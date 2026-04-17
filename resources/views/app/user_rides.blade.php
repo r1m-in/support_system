@@ -29,7 +29,13 @@
                                     <td>{{ $ride->request->reason }}</td>
                                     <td>{{ $ride->request->driver }}</td>
                                     <td>{{ $ride->request->distance }}</td>
-                                    <td>{{ $ride->driver->name }}</td>
+                                    <td>
+                                        @if ($ride->driver)
+                                            {{ $ride->driver->name }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
                                     <td>{{ $ride->fare }}</td>
                                     <td>@json($ride->driver_details)</td>
                                 </tr>
