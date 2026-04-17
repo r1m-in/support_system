@@ -47,7 +47,9 @@ class AppController extends Controller
 
         $rides = AppUserRide::latest()->where('created_by', $id);
 
-        
+        if (isset($request->status) && !empty($request->status)) {
+            $rides->where('status', $request->status);
+        }
 
         $data['rides'] = $rides->paginate(8);
 

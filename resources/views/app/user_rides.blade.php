@@ -41,7 +41,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($rides as $ride)
+                            @forelse ($rides as $ride)
                                 <tr>
                                     <td>{{ $ride->request->from_location }}</td>
                                     <td>{{ $ride->request->to_location }}</td>
@@ -71,7 +71,11 @@
                                             Ticket</button>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td class="text-center" colspan="7"> No Records Found </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

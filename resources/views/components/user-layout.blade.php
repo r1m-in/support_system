@@ -102,9 +102,22 @@
 
  <x-slot:scripts>
      <script>
-         $("#date_ranger").daterangepicker({
-             autoUpdateInput: false
+         $(function() {
+             $('#date_ranger').daterangepicker({
+                 autoUpdateInput: false,
+                 locale: {
+                     cancelLabel: 'Clear'
+                 }
+             });
+             $('#date_ranger').on('apply.daterangepicker', function(ev, picker) {
+                 $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format(
+                     'YYYY-MM-DD'));
+             });
+             $('#date_ranger').on('cancel.daterangepicker', function(ev, picker) {
+                 $(this).val('');
+             });
          });
+
          var createTicket = document.getElementById('createTicket')
          createTicket.addEventListener('show.bs.modal', function(event) {
              var button = event.relatedTarget
