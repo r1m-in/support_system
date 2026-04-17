@@ -37,7 +37,6 @@
                                         @endif
                                     </td>
                                     <td>{{ $ride->fare }}</td>
-                                    <td>@json($ride->driver_details)</td>
                                 </tr>
                             @endforeach
                         </tbody>
