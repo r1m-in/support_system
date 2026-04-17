@@ -6,17 +6,16 @@
             <div class="card-body">
 
                 <div class="table-responsive">
-                    <table class="table align-middle gs-0 gy-4 text-center table-hover">
+                    <table class="table align-middle gs-0 gy-4 table-hover">
                         <thead>
                             <tr class="fw-bolder text-white bg-dark">
-                                <th class="min-w-40px rounded-start text-center">From</th>
+                                <th class="min-w-40px rounded-start">From</th>
                                 <th class="min-w-125px">To</th>
                                 <th class="min-w-125px">Created At</th>
                                 <th class="min-w-125px">Status</th>
                                 <th class="min-w-125px">Reason</th>
-                                <th class="min-w-125px">Driver Name</th>
-                                <th class="min-w-125px text-center">Fare</th>
-                                <th class="min-w-100px text-center rounded-end">Duration</th>
+                                <th class="min-w-125px">Driver Name</th> 
+                                <th class="min-w-100px text-center rounded-end">Fare</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,8 +26,6 @@
                                     <td>{{ $ride->created_at }}</td>
                                     <td>{{ $ride->request->status }}</td>
                                     <td>{{ $ride->request->reason }}</td>
-                                    <td>{{ $ride->request->driver }}</td>
-                                    <td>{{ $ride->request->distance }}</td>
                                     <td>
                                         @if ($ride->driver)
                                             {{ $ride->driver->name }}
@@ -36,6 +33,8 @@
                                             N/A
                                         @endif
                                     </td>
+                                    <td>{{ $ride->request->distance }}</td>
+
                                     <td>{{ $ride->fare }}</td>
                                 </tr>
                             @endforeach
