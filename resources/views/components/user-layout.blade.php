@@ -102,6 +102,7 @@
 
  <x-slot:scripts>
      <script>
+        $("#date_ranger").daterangepicker();
          var createTicket = document.getElementById('createTicket')
          createTicket.addEventListener('show.bs.modal', function(event) {
              var button = event.relatedTarget
