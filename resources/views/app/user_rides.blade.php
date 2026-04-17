@@ -11,17 +11,27 @@
                             <tr>
                                 <td>{{ $ride->request->from_location }}</td>
                                 <td>{{ $ride->request->to_location }}</td>
-                                <td>{{ $ride->status }}</td>
-                                <td>distance: {{ $ride->distance }}</td>
-                                <td>duration: {{ $ride->duration }}</td>
+                                <td>{{ $ride->request->status }}</td>
+                                <td>Reason: {{ $ride->request->reason }}</td>
+                                <td>Distance: {{ $ride->request->distance }}</td>
+                                <td>Duration: {{ $ride->request->duration }}</td>
+                                <td>
+                                    @foreach ($ride as $key => $value)
+                                        <li>{{ $key }}: {{ $value }}</li>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($ride->request as $key => $value)
+                                        <li>{{ $key }}: {{ $value }}</li>
+                                    @endforeach
+                                </td>
                             </tr>
-                            @dump($ride->request)
                         @endforeach
                     </tbody>
                 </table>
 
             </div>
-        </div> 
+        </div>
 
 
     </x-user-layout>
