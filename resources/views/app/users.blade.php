@@ -35,11 +35,11 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td class="text-dark fw-bolder text-center"> {{ $user->app_user_id }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->name }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->email }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->phone }} </td>
-                                <td class="text-dark fw-bolder"> {{ $user->status }} </td>
+                                <td class="text-dark text-center"> {{ $user->app_user_id }} </td>
+                                <td class="text-dark"> {{ $user->name }} </td>
+                                <td class="text-dark"> {{ $user->email }} </td>
+                                <td class="text-dark"> {{ $user->phone }} </td>
+                                <td class="text-dark"> {{ $user->status }} </td>
                                 <td class="text-center">
                                     <a href="{{ route('app.user', $user->id) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-eye"></i> View

@@ -20,12 +20,13 @@ Route::post('login', [AuthenticatedSessionController::class, 'store']);
 Route::middleware('auth')->group(function () {
 
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-    Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::match(['get', 'post'], 'profile', [UserController::class, 'profile'])->name('profile');
 
     Route::name('app.')->prefix('app')->group(function () {
 
         Route::get('users', [AppController::class, 'users'])->name('users');
         Route::get('user/{id}', [AppController::class, 'user'])->name('user');
+        Route::get('user/{id}/rides', [AppController::class, 'user_rides'])->name('user_rides');
 
         Route::get('drivers', [AppController::class, 'drivers'])->name('drivers');
         Route::get('driver/{id}', [AppController::class, 'driver'])->name('driver');

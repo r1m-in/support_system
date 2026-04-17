@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,8 +18,25 @@ class UserController extends Controller
         return view('dashboard');
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
+
+        if ($request->input('changePassword')) {
+            $validator = Validator::make($request->all(), [
+                'password' => 'required|confirmed',
+                'password_confirmation' => 'required'
+            ]);
+            if ($validator->fails()) {
+                return redirect()->route('profile')->withErrors($validator)->withInput();
+            }
+
+            User::where('id', Auth::user()->id)->update([
+                'password' => Hash::make($request->password)
+            ]);
+            return redirect()->route('profile')->with('success', 'Password Updated');
+        }
+
+
         return view('profile');
     }
 
@@ -142,7 +161,7 @@ class UserController extends Controller
             }
 
             User::where('id', $id)->update([
-                'password' => $request->input('password')
+                'password' => Hash::make($request->password)
             ]);
             return redirect()->route('user.view', $id)->with('success', 'Password Updated');
         }

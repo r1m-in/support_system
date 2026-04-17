@@ -220,7 +220,7 @@
 
                             <div class="menu-item">
                                 <a class="menu-link  @if (request()->routeIs('profile')) active @endif"
-                                    href="{{ route('dashboard') }}">
+                                    href="{{ route('profile') }}">
                                     <span class="menu-icon">
                                         <span class="svg-icon svg-icon-2">
                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"

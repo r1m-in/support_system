@@ -76,7 +76,29 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
-            'engine' => null,
+            'engine' => null
+        ],
+
+        'rds' => [
+            'driver' => 'mysql',
+            'host' => env('DB_RDS_HOST_TWO'),
+            'port' => env('DB_RDS_PORT_TWO', '3306'),
+            'database' => env('DB_RDS_DATABASE_TWO'),
+            'username' => env('DB_RDS_USERNAME_TWO'),
+            'password' => env('DB_RDS_PASSWORD_TWO'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null
+        ],
+
+        'dynamodb' => [
+            'driver' => 'dynamodb',
+            'key' => env('AWS_DynamoDB_ACCESS_KEY_ID'),
+            'secret' => env('AWS_DynamoDB_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DynamoDB_REGION', 'us-east-1'),
         ],
 
         'mariadb' => [

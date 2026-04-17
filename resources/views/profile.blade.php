@@ -20,7 +20,7 @@
                                 <span class="badge badge-dark">{{ Auth::user()->role }}</span>
                             </div>
                             <div class="d-flex flex-column fw-bold fs-6 mb-4 pe-2 mt-2">
-                               
+
                                 <a href="#"
                                     class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                     <span class="svg-icon svg-icon-4 me-2">
@@ -74,10 +74,7 @@
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab"
                         href="#passwordTab">Password </a>
                 </li>
-                <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab"
-                        href="#sessions">Browser Sessions </a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -144,11 +141,6 @@
                             </div>
                         </div>
                     </form>
-
-
-                </div>
-                <div class="tab-pane fade" id="sessions" role="tabpanel">
-                  
                 </div>
             </div>
         </div>

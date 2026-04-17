@@ -2,8 +2,7 @@
     <x-slot name="title">App User: {{ $user->name }}</x-slot>
 
 
-    <x-user-layout :name="$user->name" :code="$user->app_user_id">
-
+    <x-user-layout :$user>
 
         <div class="card shadow">
             <div class="card-body">
@@ -45,6 +44,5 @@
                 </div>
             </div>
         </div>
-
     </x-user-layout>
 </x-admin-layout>
