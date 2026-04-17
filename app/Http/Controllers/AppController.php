@@ -43,7 +43,7 @@ class AppController extends Controller
     {
         $data['user'] = AppUser::where('id', $id)->firstOrFail();
 
-        $data['statuses'] = AppUserRide::select('status')->distinct()->pluck('status');
+        $data['statuses'] = AppUserRide::where('created_by', $id)->select('status')->distinct()->pluck('status');
 
         $data['rides'] = AppUserRide::where('created_by', $id)->get();
 

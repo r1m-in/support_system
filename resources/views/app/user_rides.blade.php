@@ -30,10 +30,9 @@
                             <tr class="fw-bolder text-white bg-dark">
                                 <th class="min-w-125px rounded-start ps-2">From</th>
                                 <th class="min-w-125px">To</th>
-                                <th class="min-w-100px">Created</th>
+                                <th class="min-w-125px">Created</th>
                                 <th class="min-w-50px">Status</th>
-                                <th class="min-w-80px">Reason</th>
-                                <th class="min-w-80px">Driver Name</th>
+                                <th class="min-w-125px">Driver Name</th>
                                 <th class="min-w-50px">Fare</th>
                                 <th class="min-w-100px text-center rounded-end pe-2">Actions</th>
                             </tr>
@@ -44,15 +43,18 @@
                                     <td>{{ $ride->request->from_location }}</td>
                                     <td>{{ $ride->request->to_location }}</td>
                                     <td>
-                                       {{ date('dS M Y', strtotime($ride->created_at)) }} <br>
-                                       {{ date('h:i a', strtotime($ride->created_at)) }} <br>
+                                        {{ date('dS M Y', strtotime($ride->created_at)) }} <br>
+                                        {{ date('h:i a', strtotime($ride->created_at)) }} <br>
                                     </td>
-                                    <td>{{ $ride->request->status }}</td>
-                                    <td>{{ $ride->request->reason }}</td>
+                                    <td><span data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-custom-class="tooltip-dark"
+                                            title="{{ $ride->request->reason }}">{{ $ride->request->status }}</span>
+                                    </td>
                                     <td>
                                         @if ($ride->driver)
-                                            {{ $ride->driver->name }} 
-                                            (<a target="_blank" href="{{ route('app.driver', $ride->driver->id) }}">{{ $ride->driver->app_driver_id }}</a>)
+                                            {{ $ride->driver->name }}
+                                            (<a target="_blank"
+                                                href="{{ route('app.driver', $ride->driver->id) }}">{{ $ride->driver->app_driver_id }}</a>)
                                         @else
                                             N/A
                                         @endif
