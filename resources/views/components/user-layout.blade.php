@@ -58,7 +58,7 @@
                  <form method="POST">
                      @csrf
 
-                     <div class="form-group mb-4">
+                     <div class="form-group mb-4 d-none">
                          <label for="name" class="required form-label">Type </label>
                          <input type="text" class="form-control" required name="type" id="type"
                              placeholder="Type" readonly />
@@ -76,7 +76,7 @@
                              value="{{ $user->phone }}" placeholder="Phone Number" readonly />
                      </div>
 
-                     <div class="form-group mb-4">
+                     <div class="form-group mb-4 d-none">
                          <label for="name" class="required form-label">Key </label>
                          <input type="text" class="form-control" required name="key" id="key"
                              placeholder="Key" readonly />
@@ -84,6 +84,13 @@
 
                      <div class="form-group mb-4">
                          <label class="form-label required">Reason</label>
+                         <select name="reason" id="reasons" class="from-select">
+                             <option value="">Select Reason</option>
+                         </select>
+                     </div>
+
+                     <div class="form-group mb-4">
+                         <label class="form-label required">Text</label>
                          <textarea name="text" required class="form-control" rows="4"></textarea>
                      </div>
 
@@ -118,11 +125,28 @@
              });
          });
 
+         var userAccount = @json(\App\Models\Reason::where('type', \App\Enums\Ticket\Type::USER_ACCOUNT)->pluck('text'));
+         var userRide = @json(\App\Models\Reason::where('type', \App\Enums\Ticket\Type::USER_RIDE)->pluck('text'));
+
          var createTicket = document.getElementById('createTicket')
          createTicket.addEventListener('show.bs.modal', function(event) {
              var button = event.relatedTarget
              createTicket.querySelector('#type').value = button.getAttribute('data-type')
              createTicket.querySelector('#key').value = button.getAttribute('data-key')
+             if (button.getAttribute('data-type') == 'user-account') {
+                 options = userAccount;
+             } else {
+                 options = userRide;
+             }
+             if (Array.isArray(options) && options.length > 0) {
+                 let optionsHtml = '<option value="">Select Reason</option>';
+                 options.forEach(function(value) {
+                     const safeValue = $('<div>').text(value).html();
+                     optionsHtml += `<option value="${safeValue}">${safeValue}</option>`;
+                 });
+                 optionsHtml += '<option value="Other">Other</option>'
+                 $('#reasons').append(optionsHtml);
+             }
          });
      </script>
  </x-slot:scripts>

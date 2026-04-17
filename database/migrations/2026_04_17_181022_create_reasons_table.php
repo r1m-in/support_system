@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('reasons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
             $table->string('type');
-            $table->string('reason');
-            $table->string('name');
-            $table->string('phone_number');
-            $table->string('key');
-            $table->text('text');
-            $table->json('data')->nullable();
-            $table->string('status');
+            $table->string('text');
             $table->timestamps();
         });
     }
@@ -31,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('reasons');
     }
 };

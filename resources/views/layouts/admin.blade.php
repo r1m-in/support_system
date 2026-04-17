@@ -116,7 +116,8 @@
                                                     d="M222.4 145.55a96.6 96.6 0 0 1-3.86 14.45h-53a8 8 0 0 0-7.5 5.19l-21.9 58.47c-2.69.22-5.41.34-8.15.34s-5.5-.12-8.2-.35L97.94 165.2a8 8 0 0 0-7.49-5.2h-53a96.6 96.6 0 0 1-3.86-14.45a128 128 0 0 1 188.8 0Z"
                                                     opacity=".2" fill="currentColor" />
                                                 <path
-                                                    d="M128 152a12 12 0 1 1 12-12a12 12 0 0 1-12 12m104-24A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104m-192 0v.33a135.93 135.93 0 0 1 176 0V128a88 88 0 0 0-176 0m67.5 85.58L90.45 168H49.63a88.35 88.35 0 0 0 57.87 45.58M128 216h2.49l20.07-53.57a16.07 16.07 0 0 1 15-10.39h47.12c.38-1.31.72-2.64 1-4a120 120 0 0 0-171.4 0c.31 1.34.65 2.67 1 4h47.17a16.08 16.08 0 0 1 15 10.4l20 53.56zm78.37-48h-40.82l-17.09 45.59A88.34 88.34 0 0 0 206.37 168" fill="currentColor" />
+                                                    d="M128 152a12 12 0 1 1 12-12a12 12 0 0 1-12 12m104-24A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104m-192 0v.33a135.93 135.93 0 0 1 176 0V128a88 88 0 0 0-176 0m67.5 85.58L90.45 168H49.63a88.35 88.35 0 0 0 57.87 45.58M128 216h2.49l20.07-53.57a16.07 16.07 0 0 1 15-10.39h47.12c.38-1.31.72-2.64 1-4a120 120 0 0 0-171.4 0c.31 1.34.65 2.67 1 4h47.17a16.08 16.08 0 0 1 15 10.4l20 53.56zm78.37-48h-40.82l-17.09 45.59A88.34 88.34 0 0 0 206.37 168"
+                                                    fill="currentColor" />
                                             </svg>
                                         </span>
                                     </span>
@@ -142,8 +143,8 @@
 
 
                             <div class="menu-item">
-                                <a class="menu-link @if (request()->routeIs('documents')) active @endif"
-                                    href="{{ route('dashboard') }}">
+                                <a class="menu-link @if (request()->routeIs('tickets')) active @endif"
+                                    href="{{ route('tickets') }}">
                                     <span class="menu-icon">
                                         <span class="svg-icon svg-icon-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
@@ -161,13 +162,31 @@
                                 </a>
                             </div>
 
-
-
-
                             <div class="menu-item">
                                 <div class="menu-content pt-4 pb-0">
                                     <span class="menu-section text-muted text-uppercase fs-7">Settings</span>
                                 </div>
+                            </div>
+
+
+                            <div class="menu-item">
+                                <a class="menu-link @if (request()->routeIs('reasons')) active @endif"
+                                    href="{{ route('reasons') }}">
+                                    <span class="menu-icon">
+                                        <span class="svg-icon svg-icon-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <rect opacity="0.3" x="2" y="2" width="20" height="20"
+                                                    rx="10" fill="currentColor" />
+                                                <rect x="11" y="17" width="7" height="2" rx="1"
+                                                    transform="rotate(-90 11 17)" fill="currentColor" />
+                                                <rect x="11" y="9" width="2" height="2" rx="1"
+                                                    transform="rotate(-90 11 9)" fill="currentColor" />
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="menu-title">Reasons</span>
+                                </a>
                             </div>
 
 

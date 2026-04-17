@@ -53,4 +53,11 @@
         </div>
     </div>
 
+    <x-slot:scripts>
+        <script>
+            var userAccount = @json(\App\Models\Reason::where('type', \App\Enums\Ticket\Type::USER_ACCOUNT)->pluck('text'));
+            var userRide = @json(\App\Models\Reason::where('type', \App\Enums\Ticket\Type::USER_RIDE)->pluck('text'));
+        </script>
+    </x-slot:scripts>
+
 </x-admin-layout>

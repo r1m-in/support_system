@@ -6,6 +6,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -21,6 +22,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::match(['get', 'post'], 'profile', [UserController::class, 'profile'])->name('profile');
+
+    Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons');
+    Route::get('tickets', [TicketController::class, 'tickets'])->name('tickets');
 
     Route::name('app.')->prefix('app')->group(function () {
 
