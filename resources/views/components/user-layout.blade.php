@@ -58,7 +58,11 @@
                  <form method="POST">
                      @csrf
 
-                     <input type="hidden" name="type" id="type" />
+                     <div class="form-group mb-4">
+                         <label for="name" class="required form-label">Type </label>
+                         <input type="text" class="form-control" required name="type" id="type"
+                             placeholder="Type" readonly />
+                     </div>
 
                      <div class="form-group mb-4">
                          <label for="name" class="required form-label">Name </label>
