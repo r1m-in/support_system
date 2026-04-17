@@ -16,14 +16,7 @@
                                 <td>Distance: {{ $ride->request->distance }}</td>
                                 <td>Duration: {{ $ride->request->duration }}</td>
                                 <td>
-                                    @foreach ($ride as $key => $value)
-                                        <li>{{ $key }}: {{ $value }}</li>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($ride->request as $key => $value)
-                                        <li>{{ $key }}: {{ $value }}</li>
-                                    @endforeach
+                                    @json($request->request)
                                 </td>
                             </tr>
                         @endforeach
