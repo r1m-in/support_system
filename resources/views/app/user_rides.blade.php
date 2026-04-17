@@ -3,6 +3,25 @@
     <x-user-layout :$user>
 
         <div class="card">
+            <div class="card-header border-0 pt-5">
+                <div class="card-title">
+
+                </div>
+                <div class="card-toolbar">
+                    <form method="GET" class="input-group mb-3">
+                        <select class="form-select rounded-start">
+                            <option value="">All Statuses</option>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status }}">{{ $status }}</option>
+                            @endforeach
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary rounded-0 rounded-end" type="submit"> <i
+                                    class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="card-body">
 
                 <div class="table-responsive">
@@ -11,7 +30,7 @@
                             <tr class="fw-bolder text-white bg-dark">
                                 <th class="min-w-125px rounded-start ps-2">From</th>
                                 <th class="min-w-125px">To</th>
-                                <th class="min-w-80px">Created At</th>
+                                <th class="min-w-100px">Created</th>
                                 <th class="min-w-50px">Status</th>
                                 <th class="min-w-80px">Reason</th>
                                 <th class="min-w-80px">Driver Name</th>
@@ -24,12 +43,16 @@
                                 <tr>
                                     <td>{{ $ride->request->from_location }}</td>
                                     <td>{{ $ride->request->to_location }}</td>
-                                    <td>{{ date('dS M Y  h:i a', strtotime($ride->created_at)) }}</td>
+                                    <td>
+                                       {{ date('dS M Y', strtotime($ride->created_at)) }} <br>
+                                       {{ date('h:i a', strtotime($ride->created_at)) }} <br>
+                                    </td>
                                     <td>{{ $ride->request->status }}</td>
                                     <td>{{ $ride->request->reason }}</td>
                                     <td>
                                         @if ($ride->driver)
-                                            {{ $ride->driver->name }}
+                                            {{ $ride->driver->name }} 
+                                            (<a target="_blank" href="{{ route('app.driver', $ride->driver->id) }}">{{ $ride->driver->app_driver_id }}</a>)
                                         @else
                                             N/A
                                         @endif
