@@ -42,6 +42,7 @@ class TicketController extends Controller
             'phone_number' => $request->phone_number,
             'main_key' => $request->main_key,
             'key' => $request->key,
+            'text' => $request->text
          ]);
 
          return redirect()->back()->with('success', 'Ticket Created Successfully');
