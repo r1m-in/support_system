@@ -22,6 +22,11 @@
                 <div class="d-flex flex-wrap justify-content-around text-center">
 
                     <div class="min-w-200px p-3">
+                        <div class="fw-bolder">Role</div>
+                        <div class="text-gray-600">{{ $driver->role->role->name }}</div>
+                    </div>
+
+                    <div class="min-w-200px p-3">
                         <div class="fw-bolder">E-Mail ID</div>
                         <div class="text-gray-600">{{ $driver->email ?? ' - ' }}</div>
                     </div>
