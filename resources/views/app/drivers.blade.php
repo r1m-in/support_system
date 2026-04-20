@@ -28,6 +28,7 @@
                             <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">E-Mail ID</th>
                             <th class="min-w-125px">Phone Number</th>
+                            <th class="min-w-125px text-center">Role</th>
                             <th class="min-w-125px text-center">Status</th>
                             <th class="min-w-100px text-center rounded-end">Actions</th>
                         </tr>
@@ -39,6 +40,7 @@
                                 <td class="text-dark fw-bolder"> {{ $driver->name }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->phone }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->email }} </td>
+                                <td class="text-dark fw-bolder"> {{ $driver->role->role->name }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->status }} </td>
                                 <td class="text-center">
                                     <a href="{{ route('app.driver', $driver->id) }}" class="btn btn-sm btn-primary">

@@ -26,6 +26,14 @@ Route::middleware('auth')->group(function () {
     Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons');
     Route::get('tickets', [TicketController::class, 'tickets'])->name('tickets');
 
+    Route::name('ticket.')->prefix('ticket')->group(function () {
+        Route::post('create', [TicketController::class, 'create'])->name('create');
+        Route::get('index', [TicketController::class, 'index'])->name('index');
+        Route::match(['get', 'post'], '{id}', [TicketController::class, 'view'])->name('view');
+    });
+
+
+
     Route::name('app.')->prefix('app')->group(function () {
 
         Route::get('users', [AppController::class, 'users'])->name('users');

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reason;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -26,5 +28,23 @@ class TicketController extends Controller
 
       $data['reasons'] = Reason::orderBy('type', 'DESC')->get();
       return view('reasons', $data);
+   }
+
+   public function create(Request $request)
+   {
+      if ($request->createTicket) {
+
+         Ticket::create([
+            'user_id' => Auth::user()->id,
+            'type' => $request->type,
+            'reason' => $request->reason,
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'main_key' => $request->main_key,
+            'key' => $request->key,
+         ]);
+
+         return redirect()->back()->with('success', 'Ticket Created Successfully');
+      }
    }
 }

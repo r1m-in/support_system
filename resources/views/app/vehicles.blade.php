@@ -24,7 +24,7 @@
                 <table class="table align-middle gs-0 gy-4 text-center table-hover">
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
-                            <th class="min-w-40px rounded-start text-center">Registration Number</th>
+                            <th class="min-w-100px rounded-start text-center">Registration Number</th>
                             <th class="min-w-125px">Type</th>
                             <th class="min-w-125px">Company</th>
                             <th class="min-w-125px">Model</th>

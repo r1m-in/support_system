@@ -7,7 +7,7 @@ use App\Enums\Ticket\Type;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['user_id', 'type', 'reason', 'name', 'phone_number', 'key', 'data', 'status'])]
+#[Fillable(['user_id', 'type', 'reason', 'name', 'phone_number', 'main_key', 'key', 'data', 'status'])]
 class Ticket extends Model
 {
     protected $attributes = ['status' => Status::OPEN];

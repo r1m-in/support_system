@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('reason');
             $table->string('name');
             $table->string('phone_number');
+            $table->string('main_key');
             $table->string('key');
             $table->text('text');
             $table->json('data')->nullable();
