@@ -14,6 +14,7 @@
                             <div class="flex-grow-1 mx-4">
                                 <h2 class="fs-2 mb-0"> Driver Details</h2>
                             </div>
+                            <span class="badge badge-dark">{{ $driver->role->role->name }}</span>
                         </div>
                     </div>
                 </div>
