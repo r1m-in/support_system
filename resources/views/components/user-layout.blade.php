@@ -1,3 +1,4 @@
+ <x-alert />
  <div class="card shadow mb-6">
      <div class="card-body pb-0 pt-4">
          <div class="d-flex flex-wrap flex-sm-nowrap">
@@ -55,7 +56,7 @@
                  </div>
 
 
-                 <form method="POST">
+                 <form method="POST" action="{{ route('ticket.create') }}">
                      @csrf
 
                      <div class="form-group mb-4 d-none">
@@ -77,7 +78,13 @@
                      </div>
 
                      <div class="form-group mb-4 d-none">
-                         <label for="name" class="required form-label">Key </label>
+                         <label for="main_key" class="required form-label">Main Key </label>
+                         <input type="text" class="form-control" required name="main_key"
+                             value="{{ $user->id }}" placeholder="Main Key" readonly />
+                     </div>
+
+                     <div class="form-group mb-4 d-none">
+                         <label for="key" class="required form-label">Key </label>
                          <input type="text" class="form-control" required name="key" id="key"
                              placeholder="Key" readonly />
                      </div>
@@ -95,7 +102,7 @@
                      </div>
 
                      <div class="d-flex justify-content-end">
-                         <button type="submit" class="btn btn-primary float-right" name="addTicket"
+                         <button type="submit" class="btn btn-primary float-right" name="createTicket"
                              value="Add New Ticket"> Create Ticket </button>
                      </div>
 

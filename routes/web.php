@@ -23,8 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::match(['get', 'post'], 'profile', [UserController::class, 'profile'])->name('profile');
 
-    Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons');
-    Route::get('tickets', [TicketController::class, 'tickets'])->name('tickets');
+    Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons'); 
 
     Route::name('ticket.')->prefix('ticket')->group(function () {
         Route::post('create', [TicketController::class, 'create'])->name('create');

@@ -143,8 +143,8 @@
 
 
                             <div class="menu-item">
-                                <a class="menu-link @if (request()->routeIs('tickets')) active @endif"
-                                    href="{{ route('tickets') }}">
+                                <a class="menu-link @if (request()->routeIs('ticket.index')) active @endif"
+                                    href="{{ route('ticket.index') }}">
                                     <span class="menu-icon">
                                         <span class="svg-icon svg-icon-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"

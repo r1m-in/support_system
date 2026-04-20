@@ -47,4 +47,11 @@ class TicketController extends Controller
          return redirect()->back()->with('success', 'Ticket Created Successfully');
       }
    }
+
+
+   public function index()
+   {
+      $data['tickets'] = Ticket::latest()->paginate(10);
+      return view('ticket.index', $data);
+   }
 }
