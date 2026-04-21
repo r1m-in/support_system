@@ -10,8 +10,7 @@
                         <tr class="fw-bolder text-white bg-dark">
                             <th class="min-w-40px rounded-start text-center">ID</th>
                             <th class="min-w-80px">Staff</th>
-                            <th class="min-w-125px">Type</th>
-                            <th class="min-w-125px">E-Mail ID</th>
+                            <th class="min-w-125px">Type</th> 
                             <th class="min-w-125px">User / Driver</th>
                             <th class="min-w-125px text-center">Status</th>
                             <th class="min-w-100px text-center rounded-end">Actions</th>
