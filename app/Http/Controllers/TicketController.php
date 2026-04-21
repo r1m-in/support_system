@@ -49,10 +49,15 @@ class TicketController extends Controller
       }
    }
 
-
    public function index()
    {
       $data['tickets'] = Ticket::latest()->paginate(10);
       return view('ticket.index', $data);
+   }
+
+   public function view($id)
+   {
+      $data['ticket'] = Ticket::findOrFail($id);
+      return view('ticket.view', $data);
    }
 }
