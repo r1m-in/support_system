@@ -60,7 +60,7 @@
                     </div>
 
 
-                    @if (in_array($data['ticket']->type, [Type::USER_ACCOUNT, Type::USER_RIDE]))
+                    @if (in_array($ticket->type, [Type::USER_ACCOUNT, Type::USER_RIDE]))
                         @if ($user)
                             <div class="d-flex align-items-center mb-2">
                                 <span class="bullet bullet-vertical h-40px bg-primary"></span>
