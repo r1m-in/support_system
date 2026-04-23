@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ticket\Type;
+use App\Models\AppDriver;
+use App\Models\AppUser;
 use App\Models\Reason;
 use App\Models\Ticket;
+use App\Models\TicketNote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,9 +59,28 @@ class TicketController extends Controller
       return view('ticket.index', $data);
    }
 
-   public function view($id)
+   public function view(Request $request, $id)
    {
+
+      if ($request->addNote) {
+         TicketNote::create([
+            'ticket_id' => $id,
+            'user_id' => Auth::user()->id,
+            'text' => $request->text,
+            'status' => $request->status
+         ]);
+         Ticket::where('id', $id)->update(['status' => $request->status]);
+         return redirect()->route('ticket.view', $id)->with('success', 'Log Added Successfully');
+      }
+
       $data['ticket'] = Ticket::findOrFail($id);
+
+      if (in_array($data['ticket']->type, [Type::USER_ACCOUNT, Type::USER_RIDE])) {
+         $data['user'] = AppUser::where('id', $$data['ticket']->main_key)->first();
+      } else {
+         $data['driver'] = AppDriver::where('id', $data['ticket']->main_key)->first();
+      }
+
       return view('ticket.view', $data);
    }
 }
