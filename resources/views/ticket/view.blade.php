@@ -110,7 +110,7 @@
                         </div>
 
 
-                        @if (!in_array($ticket->status, [Status::OPEN]))
+                        @if (in_array($ticket->status, [Status::OPEN]))
                             <button data-bs-toggle="modal" data-bs-target="#addNote" class="btn btn-sm btn-primary">
                                 Add Log
                             </button>
@@ -151,7 +151,7 @@
 
 
 
-    @if (!in_array($ticket->status, [Status::OPEN]))
+    @if (in_array($ticket->status, [Status::OPEN]))
         <div class="modal fade" id="addNote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
