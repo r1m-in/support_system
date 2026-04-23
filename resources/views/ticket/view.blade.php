@@ -94,7 +94,7 @@
                             </div>
                         @endif
 
-                        @if ($ride)
+                        @isset($ride)
                             <div class="d-flex align-items-center mb-2">
                                 <span class="bullet bullet-vertical h-40px bg-primary"></span>
                                 <div class="flex-grow-1 mx-4">
@@ -152,45 +152,13 @@
                                 </div>
 
                             </div>
-                        @endif
+                        @endisset
                     @else
                     @endif
 
-
-
                 </div>
             </div>
 
-            <div class="card  card-flush pb-0  mb-4">
-                <div class="card-header pt-6">
-                    <div class="d-flex flex-column">
-                        <h2 class="mb-1">#{{ $ticket->id }} </h2>
-                        <div>
-                            {!! $ticket->status->span() !!}
-                        </div>
-                    </div>
-                    <div class="card-toolbar">
-                        {!! $ticket->status->span() !!}
-                    </div>
-                </div>
-
-                <div class="card-body py-0">
-
-                    <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
-
-                        <li class="nav-item mt-2">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-3 active" data-bs-toggle="tab"
-                                href="#order_details">Order Details</a>
-                        </li>
-
-                        <li class="nav-item mt-2">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-3" data-bs-toggle="tab"
-                                href="#user_details">User</a>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
 
         </div>
 
