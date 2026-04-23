@@ -76,7 +76,7 @@ class TicketController extends Controller
       $data['ticket'] = Ticket::findOrFail($id);
 
       if (in_array($data['ticket']->type, [Type::USER_ACCOUNT, Type::USER_RIDE])) {
-         $data['user'] = AppUser::where('id', $$data['ticket']->main_key)->first();
+         $data['user'] = AppUser::where('id', $data['ticket']->main_key)->first();
       } else {
          $data['driver'] = AppDriver::where('id', $data['ticket']->main_key)->first();
       }
