@@ -77,15 +77,15 @@
                                     <tbody>
                                         <tr>
                                             <th class="fw-bolder">User </th>
-                                            <td> {{ $order->user->name }}</td>
+                                            <td> {{ $ticket->user->name }}</td>
                                         </tr>
                                         <tr>
                                             <th class="fw-bolder">E-Mail ID </th>
-                                            <td> {{ $order->user->email }}</td>
+                                            <td> {{ $ticket->user->email }}</td>
                                         </tr>
                                         <tr>
                                             <th class="fw-bolder">Phone Number</th>
-                                            <td>(+91) {{ $order->user->phone_number }}</td>
+                                            <td>(+91) {{ $ticket->user->phone_number }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
