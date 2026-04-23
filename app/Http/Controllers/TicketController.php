@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\Ticket\Type;
 use App\Models\AppDriver;
 use App\Models\AppUser;
+use App\Models\AppUserRide;
 use App\Models\Reason;
 use App\Models\Ticket;
 use App\Models\TicketNote;
@@ -77,6 +78,11 @@ class TicketController extends Controller
 
       if (in_array($data['ticket']->type, [Type::USER_ACCOUNT, Type::USER_RIDE])) {
          $data['user'] = AppUser::where('id', $data['ticket']->main_key)->first();
+
+         if ($data['ticket']->main_key !== $data['ticket']->key) {
+            $data['ride'] = AppUserRide::where('id', $data['ticket']->key)->first();
+         }
+
       } else {
          $data['driver'] = AppDriver::where('id', $data['ticket']->main_key)->first();
       }

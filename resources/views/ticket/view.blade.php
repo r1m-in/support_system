@@ -93,6 +93,66 @@
 
                             </div>
                         @endif
+
+                        @if ($ride)
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="bullet bullet-vertical h-40px bg-primary"></span>
+                                <div class="flex-grow-1 mx-4">
+                                    <h2 class="fs-2 mb-0">Ride</h2>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-wrap justify-content-around text-center">
+
+                                <div class="min-w-200px p-3">
+                                    <div class="fw-bolder">From</div>
+                                    <div class="text-gray-600">{{ $ride->request->from_location }}</div>
+                                </div>
+
+                                <div class="min-w-200px p-3">
+                                    <div class="fw-bolder">To</div>
+                                    <div class="text-gray-600">{{ $ride->request->to_location }}</div>
+                                </div>
+
+                                <div class="min-w-200px p-3">
+                                    <div class="fw-bolder">Created</div>
+                                    <div class="text-gray-600">{{ date('dS M Y h:i a', strtotime($ride->created_at)) }}
+                                    </div>
+                                </div>
+
+                                <div class="min-w-200px p-3">
+                                    <div class="fw-bolder">Driver</div>
+                                    <div class="text-gray-600">
+                                        @if ($ride->driver)
+                                            {{ $ride->driver->name }}
+                                            (
+                                            <a target="_blank"
+                                                href="{{ route('app.driver', $ride->driver->id) }}">{{ $ride->driver->app_driver_id }}</a>)
+                                        @else
+                                            N/A
+                                        @endif
+                                    </div>
+                                </div>
+
+
+                                <div class="min-w-200px p-3">
+                                    <div class="fw-bolder">Status</div>
+                                    <div class="text-gray-600"> {{ $ride->request->status }}</div>
+                                </div>
+
+                                <div class="min-w-200px p-3">
+                                    <div class="fw-bolder">Reasom</div>
+                                    <div class="text-gray-600">{{ $ride->request->reason }}
+                                    </div>
+                                </div>
+
+                                <div class="min-w-200px p-3">
+                                    <div class="fw-bolder">Fare</div>
+                                    <div class="text-gray-600"> {{ $ride->fare }}</div>
+                                </div>
+
+                            </div>
+                        @endif
                     @else
                     @endif
 
@@ -132,47 +192,6 @@
                 </div>
             </div>
 
-
-            <div class="card mb-4">
-                <div class="card-body py-3">
-
-                    <div class="tab-content">
-
-                        <div class="tab-pane fade show active" id="order_details">
-                            <div class="table-responsive">
-                                <table class="table table-striped text-center">
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-
-
-                        <div class="tab-pane fade" id="user_details">
-                            <div class="table-responsive">
-                                <table class="table table-striped text-center">
-                                    <tbody>
-                                        <tr>
-                                            <th class="fw-bolder">User </th>
-                                            <td> {{ $ticket->user->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="fw-bolder">E-Mail ID </th>
-                                            <td> {{ $ticket->user->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="fw-bolder">Phone Number</th>
-                                            <td>(+91) {{ $ticket->user->phone_number }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="col-md-5">
