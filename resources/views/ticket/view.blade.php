@@ -191,7 +191,7 @@
                                 {{ $ticket->created_at->format('dS M Y  h:i A') }}
                             </div>
                             <div class="timeline-badge">
-                                <i class="fa fa-genderless text-{{ $ticket->status->color() }} fs-1"></i>
+                                <i class="fa fa-genderless text-success fs-1"></i>
                             </div>
                             <div class="timeline-content d-flex">
                                 <div class="ps-3">
