@@ -110,7 +110,7 @@
                         </div>
 
 
-                        @if (!in_array($order->status, [Status::OPEN]))
+                        @if (!in_array($ticket->status, [Status::OPEN]))
                             <button data-bs-toggle="modal" data-bs-target="#addNote" class="btn btn-sm btn-primary">
                                 Add Log
                             </button>
