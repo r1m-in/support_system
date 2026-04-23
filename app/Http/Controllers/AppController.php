@@ -7,6 +7,7 @@ use App\Models\AppRequest;
 use App\Models\AppUser;
 use App\Models\AppUserRide;
 use App\Models\AppVehicle;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -56,6 +57,15 @@ class AppController extends Controller
 
         return view('app.user_rides', $data);
     }
+
+    public function user_tickets($id)
+    {
+        $data['user'] = AppUser::where('id', $id)->firstOrFail();
+        $data['tickets'] = Ticket::where('main_key', $id)->paginate(10);
+
+        return view('app.user_tickets', $data);
+    }
+
 
 
     public function drivers(Request $request)

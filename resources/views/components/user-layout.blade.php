@@ -32,7 +32,9 @@
              </li>
 
              <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6" href="#">Tickets</a>
+                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.user_tickets')) active @endif"
+                     href="{{ route('app.user_tickets', $user->id) }}">
+                     Tickets</a>
              </li>
 
          </ul>

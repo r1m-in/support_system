@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
         Route::get('users', [AppController::class, 'users'])->name('users');
         Route::get('user/{id}', [AppController::class, 'user'])->name('user');
         Route::get('user/{id}/rides', [AppController::class, 'user_rides'])->name('user_rides');
+        Route::get('user/{id}/tickets', [AppController::class, 'user_tickets'])->name('user_tickets');
 
         Route::get('drivers', [AppController::class, 'drivers'])->name('drivers');
         Route::get('driver/{id}', [AppController::class, 'driver'])->name('driver');
