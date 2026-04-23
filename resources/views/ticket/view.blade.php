@@ -174,7 +174,7 @@
                                 <label for="status" class="required form-label">Status</label>
                                 <div class="btn-group w-100" data-kt-buttons="true"
                                     data-kt-buttons-target="[data-kt-button]">
-                                    @foreach (Status::statuses() as $status)
+                                    @foreach (Status::cases() as $status)
                                         <label
                                             class="btn btn-outline-secondary text-muted text-hover-white text-active-white btn-outline btn-active-{{ $status->color() }}"
                                             data-kt-button="true">
