@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('drivers', [AppController::class, 'drivers'])->name('drivers');
         Route::get('driver/{id}', [AppController::class, 'driver'])->name('driver');
+        Route::get('driver/{id}/rides', [AppController::class, 'driver_rides'])->name('driver_rides');
+        Route::get('driver/{id}/transactions', [AppController::class, 'driver_transactions'])->name('driver_transactions');
+        Route::get('driver/{id}/tickets', [AppController::class, 'driver_tickets'])->name('driver_tickets');
 
         Route::get('vehicles', [AppController::class, 'vehicles'])->name('vehicles');
         Route::get('vehicle/{id}', [AppController::class, 'vehicle'])->name('vehicle');

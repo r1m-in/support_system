@@ -20,19 +20,19 @@
          <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
 
              <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6 active" href="#">Overview</a>
+                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver')) active @endif" href="{{ route('app.driver', $driver->id) }}">Overview</a>
              </li>
 
              <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6" href="#">Rides</a>
+                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_rides')) active @endif" href="{{ route('app.driver_rides', $driver->id) }}">Rides</a>
              </li>
 
              <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6" href="#">Transcations</a>
+                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_transactions')) active @endif" href="{{ route('app.driver_transactions', $driver->id) }}">Transcations</a>
              </li>
 
              <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6" href="#">Tickets</a>
+                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_tickets')) active @endif" href="{{ route('app.driver_tickets', $driver->id) }}">Tickets</a>
              </li>
 
 

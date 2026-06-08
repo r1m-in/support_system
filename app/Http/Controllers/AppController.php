@@ -95,6 +95,24 @@ class AppController extends Controller
         return view('app.driver', $data);
     }
 
+     public function driver_rides(Request $request, $id)
+    {
+        $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
+
+        $data['statuses'] = AppUserRide::where('driver_id', $id)->select('status')->distinct()->pluck('status');
+
+        $rides = AppUserRide::latest()->where('driver_id', $id);
+
+        if (isset($request->status) && !empty($request->status)) {
+            $rides->where('status', $request->status);
+        }
+
+        $data['rides'] = $rides->paginate(8);
+
+
+        return view('app.driver_rides', $data);
+    }
+
     public function vehicles(Request $request)
     {
         $vehicles = collect();
