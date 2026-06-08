@@ -7,7 +7,9 @@
                      <div class="flex-grow-1 mx-4">
                          <h2 class="fs-2 mb-0"> {{ $name }} ({{ $code }})</h2>
                      </div>
-                     <button class="btn btn-primary btn-sm"><i class="fas fa-ticket me-2"></i> Create Ticket</button>
+                     <button type="button" data-bs-toggle="modal" data-bs-target="#createTicket"
+                         class="btn btn-primary btn-sm" data-type="{{ \App\Enums\Ticket\Type::DRIVER_ACCOUNT->value }}"
+                         data-key="{{ $driver->id }}"><i class="fas fa-ticket me-2"></i> Create Ticket</button>
                  </div>
              </div>
          </div>
@@ -39,3 +41,125 @@
  </div>
 
  {{ $slot }}
+
+
+
+ <div class="modal fade" id="createTicket" tabindex="-1" role="dialog" aria-labelledby="createTicketModalLabel"
+     aria-hidden="true">
+     <div class="modal-dialog  modal-dialog-centered" role="document">
+         <div class="modal-content">
+             <div class="modal-body">
+
+                 <div class="d-flex flex-row-reverse">
+                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                         <span class="svg-icon svg-icon-2x"><i class="fa fas fa-times"></i></span>
+                     </div>
+                 </div>
+
+
+                 <form method="POST" action="{{ route('ticket.create') }}">
+                     @csrf
+
+                     <div class="form-group mb-4 d-none">
+                         <label for="name" class="required form-label">Type </label>
+                         <input type="text" class="form-control" required name="type" id="type"
+                             placeholder="Type" readonly />
+                     </div>
+
+                     <div class="form-group mb-4">
+                         <label for="name" class="required form-label">Name </label>
+                         <input type="text" class="form-control" required name="name" value="{{ $user->name }}"
+                             placeholder="Name" readonly />
+                     </div>
+
+                     <div class="form-group mb-4">
+                         <label for="phone_number" class="required form-label">Phone Number</label>
+                         <input type="text" class="form-control" required name="phone_number"
+                             value="{{ $user->phone }}" placeholder="Phone Number" readonly />
+                     </div>
+
+                     <div class="form-group mb-4 d-none">
+                         <label for="main_key" class="required form-label">Main Key </label>
+                         <input type="text" class="form-control" required name="main_key" value="{{ $user->id }}"
+                             placeholder="Main Key" readonly />
+                     </div>
+
+                     <div class="form-group mb-4 d-none">
+                         <label for="key" class="required form-label">Key </label>
+                         <input type="text" class="form-control" required name="key" id="key"
+                             placeholder="Key" readonly />
+                     </div>
+
+                     <div class="form-group mb-4">
+                         <label class="form-label required">Reason</label>
+                         <select name="reason" id="reasons" class="form-select">
+                             <option value="">Select Reason</option>
+                         </select>
+                     </div>
+
+                     <div class="form-group mb-4">
+                         <label class="form-label required">Text</label>
+                         <textarea name="text" required class="form-control" rows="4"></textarea>
+                     </div>
+
+                     <div class="d-flex justify-content-end">
+                         <button type="submit" class="btn btn-primary float-right" name="createTicket"
+                             value="Add New Ticket"> Create Ticket </button>
+                     </div>
+
+                 </form>
+
+             </div>
+
+         </div>
+     </div>
+ </div>
+
+ <x-slot:scripts>
+     <script>
+         $(function() {
+             $('#date_ranger').daterangepicker({
+                 autoUpdateInput: false,
+                 locale: {
+                     cancelLabel: 'Clear'
+                 }
+             });
+             $('#date_ranger').on('apply.daterangepicker', function(ev, picker) {
+                 $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format(
+                     'YYYY-MM-DD'));
+             });
+             $('#date_ranger').on('cancel.daterangepicker', function(ev, picker) {
+                 $(this).val('');
+             });
+         });
+
+         var driverAccount = @json(\App\Models\Reason::where('type', \App\Enums\Ticket\Type::DRIVER_ACCOUNT)->pluck('text'));
+         var driverRide = @json(\App\Models\Reason::where('type', \App\Enums\Ticket\Type::DRIVER_RIDE)->pluck('text'));
+         var driverTransaction = @json(\App\Models\Reason::where('type', \App\Enums\Ticket\Type::DRIVER_TRANSACTION)->pluck('text'));
+
+
+         var createTicket = document.getElementById('createTicket')
+         createTicket.addEventListener('show.bs.modal', function(event) {
+             var button = event.relatedTarget
+             createTicket.querySelector('#type').value = button.getAttribute('data-type')
+             createTicket.querySelector('#key').value = button.getAttribute('data-key')
+             if (button.getAttribute('data-type') == 'driver-account') {
+                 options = driverAccount;
+             } else if (button.getAttribute('data-type') == 'driver-ride') {
+                 options = driverRide;
+             } else {
+                 options = driverTransaction;
+             }
+             if (Array.isArray(options) && options.length > 0) {
+                 let optionsHtml = '<option value="">Select Reason</option>';
+                 options.forEach(function(value) {
+                     const safeValue = $('<div>').text(value).html();
+                     optionsHtml += `<option value="${safeValue}">${safeValue}</option>`;
+                 });
+                 optionsHtml += '<option value="Other">Other</option>'
+                 $('#reasons').html(optionsHtml);
+             }
+         });
+     </script>
+ </x-slot:scripts>

@@ -42,7 +42,7 @@
  </div>
 
  {{ $slot }}
-
+ 
 
  <div class="modal fade" id="createTicket" tabindex="-1" role="dialog" aria-labelledby="createTicketModalLabel"
      aria-hidden="true">

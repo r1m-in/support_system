@@ -2,8 +2,6 @@
     <x-slot name="title">App Driver: {{ $driver->name }}</x-slot>
 
     <x-driver-layout :name="$driver->name" :code="$driver->app_driver_id">
-
-
         <div class="card shadow">
             <div class="card-body">
 
