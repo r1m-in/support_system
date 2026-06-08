@@ -148,10 +148,9 @@ return new class extends Migration
         $user->email_verified_at = now();
         $user->save();
 
-        Permission::create(['name' => PermissionEnum::USER_VIEW]);
-        Permission::create(['name' => PermissionEnum::USER_CREATE]);
-        Permission::create(['name' => PermissionEnum::USER_EDIT]);
-        Permission::create(['name' => PermissionEnum::USER_DELETE]);
+        foreach (PermissionEnum::cases() as $permission):
+            Permission::firstOrCreate(['name' => $permission]);
+        endforeach;
     }
 
     /**

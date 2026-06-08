@@ -60,7 +60,7 @@
                                         @if ($ride->user)
                                             {{ $ride->user->name }}
                                             (<a target="_blank"
-                                                href="{{ route('app.user', $ride->user->id) }}">{{ $ride->user->id }}</a>)
+                                                href="{{ route('app.user', $ride->user->id) }}">{{ $ride->user->app_user_id }}</a>)
                                         @else
                                             N/A
                                         @endif
@@ -69,7 +69,7 @@
                                     <td>
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#createTicket"
                                             class="btn btn-primary btn-sm"
-                                            data-type="{{ \App\Enums\Ticket\Type::USER_RIDE->value }}"
+                                            data-type="{{ \App\Enums\Ticket\Type::DRIVER_RIDE->value }}"
                                             data-key="{{ $ride->id }}"><i class="fas fa-ticket me-2"></i> Create
                                             Ticket</button>
                                     </td>
