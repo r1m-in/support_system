@@ -9,7 +9,7 @@
                      </div>
                      <button type="button" data-bs-toggle="modal" data-bs-target="#createTicket"
                          class="btn btn-primary btn-sm" data-type="{{ \App\Enums\Ticket\Type::DRIVER_ACCOUNT->value }}"
-                         data-key="{{ $driverId }}"><i class="fas fa-ticket me-2"></i> Create Ticket</button>
+                         data-key="{{ $driver->id }}"><i class="fas fa-ticket me-2"></i> Create Ticket</button>
                  </div>
              </div>
          </div>
@@ -69,19 +69,19 @@
 
                      <div class="form-group mb-4">
                          <label for="name" class="required form-label">Name </label>
-                         <input type="text" class="form-control" required name="name" value="{{ $user->name }}"
+                         <input type="text" class="form-control" required name="name" value="{{ $driver->name }}"
                              placeholder="Name" readonly />
                      </div>
 
                      <div class="form-group mb-4">
                          <label for="phone_number" class="required form-label">Phone Number</label>
                          <input type="text" class="form-control" required name="phone_number"
-                             value="{{ $user->phone }}" placeholder="Phone Number" readonly />
+                             value="{{ $driver->phone }}" placeholder="Phone Number" readonly />
                      </div>
 
                      <div class="form-group mb-4 d-none">
                          <label for="main_key" class="required form-label">Main Key </label>
-                         <input type="text" class="form-control" required name="main_key" value="{{ $user->id }}"
+                         <input type="text" class="form-control" required name="main_key" value="{{ $driver->id }}"
                              placeholder="Main Key" readonly />
                      </div>
 

@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="title">App Driver: {{ $driver->name }}</x-slot>
 
-    <x-driver-layout :name="$driver->name" :code="$driver->app_driver_id" :driverId="$driver->id">
+    <x-driver-layout :name="$driver->name" :code="$driver->app_driver_id" :driver="$driver">
         <div class="card shadow">
             <div class="card-body">
 
