@@ -15,7 +15,7 @@
                 <div class="flex-row-fluid">
                     <div class="row">
 
-                        @if (!$user->hasRole(\App\Enums\User\RoleEnum::ADMIN) && ($user->provider == \App\Enums\User\Provider::DIRECT))
+                        @if (!$user->hasRole(\App\Enums\User\RoleEnum::ADMIN))
                             <div class="offset-md-3 col-md-6">
                                 <form>
                                     @csrf

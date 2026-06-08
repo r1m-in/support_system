@@ -16,8 +16,15 @@ class AppUserRide extends Model
    {
       return $this->belongsTo(AppRequest::class, 'request_id', 'id');
    }
+   
    public function driver()
    {
       return $this->belongsTo(AppDriver::class, 'driver_id', 'id');
    }
+
+   public function user()
+   {
+      return $this->belongsTo(AppUser::class, 'created_by', 'id');
+   }
+
 }

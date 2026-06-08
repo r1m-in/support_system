@@ -207,7 +207,7 @@
                                                 </svg>
                                             </span>
                                         </span>
-                                        <span class="menu-title">Users</span>
+                                        <span class="menu-title">Users (Staff)</span>
                                         <span class="menu-arrow"></span>
                                     </span>
                                     <div class="menu-sub menu-sub-accordion menu-active-bg">
