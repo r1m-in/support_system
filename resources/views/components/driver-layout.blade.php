@@ -9,7 +9,7 @@
                      </div>
                      <button type="button" data-bs-toggle="modal" data-bs-target="#createTicket"
                          class="btn btn-primary btn-sm" data-type="{{ \App\Enums\Ticket\Type::DRIVER_ACCOUNT->value }}"
-                         data-key="{{ $driver->id }}"><i class="fas fa-ticket me-2"></i> Create Ticket</button>
+                         data-key="{{ $driverId }}"><i class="fas fa-ticket me-2"></i> Create Ticket</button>
                  </div>
              </div>
          </div>
