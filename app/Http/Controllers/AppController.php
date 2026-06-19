@@ -111,6 +111,12 @@ class AppController extends Controller
         return view('app.driver_rides', $data);
     }
 
+    public function driver_transactions($id)
+    {
+        $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
+        return view('app.driver_transactions', $data);
+    }
+
     public function driver_tickets($id)
     {
         $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
