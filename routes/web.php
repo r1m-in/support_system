@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::match(['get', 'post'], 'profile', [UserController::class, 'profile'])->name('profile');
 
-    Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons'); 
+    Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons');
 
     Route::name('ticket.')->prefix('ticket')->group(function () {
         Route::post('create', [TicketController::class, 'create'])->name('create');
@@ -51,19 +51,21 @@ Route::middleware('auth')->group(function () {
     });
 
 
-    Route::match(['get', 'post'], 'users', [UserController::class, 'users'])->name('users')->middleware('can:' . PermissionEnum::USER_VIEW->value);
-    Route::name('user.')->prefix('user')->middleware('can:' . PermissionEnum::USER_VIEW->value)->group(function () {
-        // Roles
-        Route::middleware('role:' . RoleEnum::ADMIN->value)->group(function () {
+    Route::middleware('role:' . RoleEnum::ADMIN->value)->group(function () {
+        Route::match(['get', 'post'], 'users', [UserController::class, 'users'])->name('users');
+        Route::name('user.')->prefix('user')->group(function () {
+
+            // Roles 
             Route::get('roles', [UserController::class, 'roles'])->name('roles');
             Route::match(['get', 'post'], 'role/{id}', [UserController::class, 'role'])->name('role');
+
+            // User
+            Route::match(['get', 'post'], '/{id}', [UserController::class, 'user'])->name('view');
+            Route::match(['get', 'post'], '{id}/edit', [UserController::class, 'edit'])->name('edit');
+            Route::match(['get', 'post'], '{id}/password', [UserController::class, 'password'])->name('password');
+            Route::match(['get', 'post'], '{id}/role', [UserController::class, 'update_role'])->name('update_role');
+            Route::match(['get', 'post'], '{id}/status', [UserController::class, 'status'])->name('status');
         });
-        // User
-        Route::match(['get', 'post'], '/{id}', [UserController::class, 'user'])->name('view')->middleware('can:' . PermissionEnum::USER_VIEW->value);
-        Route::match(['get', 'post'], '{id}/edit', [UserController::class, 'edit'])->name('edit')->middleware('can:' . PermissionEnum::USER_EDIT->value);
-        Route::match(['get', 'post'], '{id}/password', [UserController::class, 'password'])->name('password')->middleware('can:' . PermissionEnum::USER_EDIT->value);
-        Route::match(['get', 'post'], '{id}/role', [UserController::class, 'update_role'])->name('update_role')->middleware('can:' . PermissionEnum::USER_EDIT->value);
-        Route::match(['get', 'post'], '{id}/status', [UserController::class, 'status'])->name('status')->middleware('can:' . PermissionEnum::USER_EDIT->value);
     });
 });
 

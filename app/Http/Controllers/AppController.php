@@ -66,8 +66,6 @@ class AppController extends Controller
         return view('app.user_tickets', $data);
     }
 
-
-
     public function drivers(Request $request)
     {
         $drivers = collect();
@@ -95,7 +93,7 @@ class AppController extends Controller
         return view('app.driver', $data);
     }
 
-     public function driver_rides(Request $request, $id)
+    public function driver_rides(Request $request, $id)
     {
         $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
 
@@ -112,6 +110,14 @@ class AppController extends Controller
 
         return view('app.driver_rides', $data);
     }
+
+    public function driver_tickets($id)
+    {
+        $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
+        $data['tickets'] = Ticket::where('main_key', $id)->paginate(10);
+        return view('app.driver_tickets', $data);
+    }
+
 
     public function vehicles(Request $request)
     {
