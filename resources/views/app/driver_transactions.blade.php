@@ -10,13 +10,10 @@
                     <table class="table align-middle gs-0 gy-4 text-center table-hover">
                         <thead>
                             <tr class="fw-bolder text-white bg-dark">
-                                <th class="min-w-125px rounded-start ps-2">From</th>
-                                <th class="min-w-125px">To</th>
-                                <th class="min-w-125px">Created</th>
-                                <th class="min-w-50px">Status</th>
-                                <th class="min-w-125px">User Name</th>
-                                <th class="min-w-50px">Fare</th>
-                                <th class="min-w-150px rounded-end pe-2">Actions</th>
+                                <th class="min-w-100px rounded-start ps-2">Type</th>
+                                <th class="min-w-100px">Date</th>
+                                <th class="min-w-150px">Description</th> 
+                                <th class="min-w-80px rounded-end pe-2">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
