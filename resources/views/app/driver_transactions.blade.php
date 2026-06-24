@@ -4,25 +4,6 @@
 
 
         <div class="card">
-            <div class="card-header border-0 pt-5">
-                <div class="card-title">
-
-                </div>
-                <div class="card-toolbar">
-                    <form method="GET" class="input-group mb-3">
-                        <select name="status" class="form-select rounded-0 rounded-start">
-                            <option value="">All Statuses</option>
-
-                        </select>
-                        <input class="form-control rounded-0" placeholder="Pick dates" name="dates"
-                            id="date_ranger" />
-                        <div class="input-group-append">
-                            <button class="btn btn-primary rounded-0 rounded-end" type="submit"> <i
-                                    class="fas fa-search"></i></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
             <div class="card-body">
 
                 <div class="table-responsive">
@@ -40,6 +21,9 @@
                         </thead>
                         <tbody>
                             @forelse ($transactions as $transaction)
+                            <tr>
+                                <td>{{ $transaction['type'] }}</td>
+                            </tr>
                                 @dump($transaction)
 
                             @empty
