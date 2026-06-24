@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AppDriver;
+use App\Models\AppDriverTransaction;
 use App\Models\AppRequest;
 use App\Models\AppUser;
 use App\Models\AppUserRide;
@@ -114,6 +115,10 @@ class AppController extends Controller
     public function driver_transactions($id)
     {
         $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
+ 
+        $transactions = AppDriverTransaction::latest()->where('driver_id', $id);
+        $data['transactions'] = $transactions->paginate(8);
+
         return view('app.driver_transactions', $data);
     }
 
