@@ -20,7 +20,7 @@
                             @forelse ($transactions as $transaction)
                             <tr>
                                 <td>{{ $transaction['type'] }}</td>
-                                <td>{{ $transaction['created_at'] }}</td>
+                                <td>{{  date('dS M Y h:i a', strtotime($transaction['created_at'])) }}</td>
                                 <td>{{ $transaction['description'] }}</td>
                                 <td>{{ $transaction['amount'] }}</td>
                             </tr> 
