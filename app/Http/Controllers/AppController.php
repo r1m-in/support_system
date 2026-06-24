@@ -116,7 +116,7 @@ class AppController extends Controller
     {
         $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
  
-        $transactions = AppDriverTransaction::latest()->where('driver_id', $id);
+        $transactions = AppDriverTransaction::where('driver_id', $id);
         $data['transactions'] = $transactions->paginate(8);
 
         return view('app.driver_transactions', $data);
