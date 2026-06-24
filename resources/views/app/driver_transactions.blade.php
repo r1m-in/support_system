@@ -23,9 +23,10 @@
                             @forelse ($transactions as $transaction)
                             <tr>
                                 <td>{{ $transaction['type'] }}</td>
-                            </tr>
-                                @dump($transaction)
-
+                                <td>{{ $transaction['created_at'] }}</td>
+                                <td>{{ $transaction['description'] }}</td>
+                                <td>{{ $transaction['amount'] }}</td>
+                            </tr> 
                             @empty
                                 <tr>
                                     <td class="text-center" colspan="7"> No Records Found </td>
