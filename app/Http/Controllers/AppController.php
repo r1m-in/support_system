@@ -121,11 +121,11 @@ class AppController extends Controller
         return view('app.driver_rides', $data);
     }
 
-    public function driver_transactions($id)
+    public function driver_transactions(string $id)
     {
         $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
 
-        $transactions = $this->dynamoDb->getItem('driver_wallet_transactions', ['driver_id' => $id ]);
+        $transactions = $this->dynamoDb->driverTranscation('driver_wallet_transactions', $id);
 
         $data['transactions'] = $transactions; 
 
