@@ -127,7 +127,7 @@ class AppController extends Controller
 
         $transactions = $this->dynamoDb->getItem('driver_wallet_transactions', ['driver_id' => $id ]);
 
-        $data['transactions'] = $transactions;
+        $data['transactions'] = $transactions; 
 
         return view('app.driver_transactions', $data);
     }
