@@ -40,11 +40,8 @@
                         </thead>
                         <tbody>
                             @forelse ($transactions as $transaction)
-                                <tr>
-                                    <td class="text-start">{{ $transaction->type }}</td>
-                                    <td class="text-start">{{ $transaction->description }}</td>
-                                    <td>{{ $transaction->amount }}</td>
-                                </tr>
+                                @dump($transaction)
+
                             @empty
                                 <tr>
                                     <td class="text-center" colspan="7"> No Records Found </td>
