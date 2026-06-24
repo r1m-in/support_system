@@ -8,7 +8,10 @@ class AppDriverTransaction extends Model
 {
    protected $connection = 'dynamodb';
    protected $table = 'driver_wallet_transactions';
-   protected $keyType = 'string';
+
+   protected $primaryKey = null;
+   public $incrementing = false;
+
 
    protected $guarded = ['*'];
 
