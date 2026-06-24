@@ -50,8 +50,7 @@
                         </tbody>
                     </table>
                 </div>
-
-                {{ $transactions->appends(request()->input())->onEachSide(3)->links() }}
+                
             </div>
         </div>
 
