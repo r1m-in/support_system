@@ -98,7 +98,7 @@ return [
             'driver' => 'dynamodb',
             'key' => env('AWS_DynamoDB_ACCESS_KEY_ID'),
             'secret' => env('AWS_DynamoDB_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DynamoDB_REGION', 'us-east-1'),
+            'region' => env('AWS_DynamoDB_REGION', 'us-east-1'), 
         ],
 
         'mariadb' => [

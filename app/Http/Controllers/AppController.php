@@ -11,9 +11,18 @@ use App\Models\AppVehicle;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Services\DynamoDbService;
 
 class AppController extends Controller
 {
+
+    protected $dynamoDb;
+
+    public function __construct(DynamoDbService $dynamoDb)
+    {
+        $this->dynamoDb = $dynamoDb;
+    }
+
     public function users(Request $request)
     {
         $users = collect();
@@ -115,9 +124,10 @@ class AppController extends Controller
     public function driver_transactions($id)
     {
         $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
- 
-        $transactions = AppDriverTransaction::where('driver_id', $id);
-        $data['transactions'] = $transactions->paginate(8);
+
+        $transactions = $this->dynamoDb->getItem('driver_wallet_transactions', ['driver_id' => $id ]);
+
+        $data['transactions'] = $transactions;
 
         return view('app.driver_transactions', $data);
     }
