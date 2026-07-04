@@ -1,7 +1,6 @@
 <x-admin-layout>
     <x-slot name="title">App User: {{ $user->name }}</x-slot>
 
-
     <x-user-layout :$user>
 
         <div class="card shadow">
@@ -27,7 +26,13 @@
 
                     <div class="min-w-200px p-3">
                         <div class="fw-bolder">Phone Number</div>
-                        <div class="text-gray-600">{{ $user->phone ?? ' - ' }}</div>
+                        <div class="text-gray-600">
+                            @can(\App\Enums\User\PermissionEnum::APP_USER_MOBILE)
+                                {{ $user->phone ?? ' - ' }}
+                            @else
+                                No Access
+                            @endcan
+                        </div>
                     </div>
 
                     <div class="min-w-200px p-3">

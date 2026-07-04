@@ -20,20 +20,30 @@
          <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
 
              <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver')) active @endif" href="{{ route('app.driver', $driver->id) }}">Overview</a>
+                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver')) active @endif"
+                     href="{{ route('app.driver', $driver->id) }}">Overview</a>
              </li>
 
-             <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_rides')) active @endif" href="{{ route('app.driver_rides', $driver->id) }}">Rides</a>
-             </li>
+             @can(\App\Enums\User\PermissionEnum::APP_DRIVER_RIDES)
+                 <li class="nav-item">
+                     <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_rides')) active @endif"
+                         href="{{ route('app.driver_rides', $driver->id) }}">Rides</a>
+                 </li>
+             @endcan
 
-             <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_transactions')) active @endif" href="{{ route('app.driver_transactions', $driver->id) }}">Transcations</a>
-             </li>
+             @can(\App\Enums\User\PermissionEnum::APP_DRIVER_TRANSACTIONS)
+                 <li class="nav-item">
+                     <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_transactions')) active @endif"
+                         href="{{ route('app.driver_transactions', $driver->id) }}">Transcations</a>
+                 </li>
+             @endcan
 
-             <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_tickets')) active @endif" href="{{ route('app.driver_tickets', $driver->id) }}">Tickets</a>
-             </li>
+             @can(\App\Enums\User\PermissionEnum::APP_DRIVER_TICKETS)
+                 <li class="nav-item">
+                     <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_tickets')) active @endif"
+                         href="{{ route('app.driver_tickets', $driver->id) }}">Tickets</a>
+                 </li>
+             @endcan
 
 
          </ul>
@@ -81,8 +91,8 @@
 
                      <div class="form-group mb-4 d-none">
                          <label for="main_key" class="required form-label">Main Key </label>
-                         <input type="text" class="form-control" required name="main_key" value="{{ $driver->id }}"
-                             placeholder="Main Key" readonly />
+                         <input type="text" class="form-control" required name="main_key"
+                             value="{{ $driver->id }}" placeholder="Main Key" readonly />
                      </div>
 
                      <div class="form-group mb-4 d-none">

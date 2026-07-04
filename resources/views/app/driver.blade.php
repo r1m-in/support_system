@@ -31,7 +31,13 @@
 
                     <div class="min-w-200px p-3">
                         <div class="fw-bolder">Phone Number</div>
-                        <div class="text-gray-600">{{ $driver->phone ?? ' - ' }}</div>
+                        <div class="text-gray-600">
+                            @can(\App\Enums\User\PermissionEnum::APP_DRIVER_MOBILE)
+                                {{ $driver->phone ?? ' - ' }}
+                            @else
+                                No Access
+                            @endcan
+                        </div>
                     </div>
 
                     <div class="min-w-200px p-3">

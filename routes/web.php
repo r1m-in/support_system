@@ -13,45 +13,44 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
-
 
 Route::middleware('auth')->group(function () {
 
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::match(['get', 'post'], 'profile', [UserController::class, 'profile'])->name('profile');
 
-    Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons');
-
     Route::name('ticket.')->prefix('ticket')->group(function () {
         Route::post('create', [TicketController::class, 'create'])->name('create');
-        Route::get('index', [TicketController::class, 'index'])->name('index');
+        Route::get('index', [TicketController::class, 'index'])->middleware('can:' . PermissionEnum::TICKETS->value)->name('index');
         Route::match(['get', 'post'], '{id}', [TicketController::class, 'view'])->name('view');
     });
 
-
-
     Route::name('app.')->prefix('app')->group(function () {
 
-        Route::get('users', [AppController::class, 'users'])->name('users');
-        Route::get('user/{id}', [AppController::class, 'user'])->name('user');
-        Route::get('user/{id}/rides', [AppController::class, 'user_rides'])->name('user_rides');
-        Route::get('user/{id}/tickets', [AppController::class, 'user_tickets'])->name('user_tickets');
+        Route::middleware('can:' . PermissionEnum::APP_USER_VIEW->value)->group(function () {
+            Route::get('users', [AppController::class, 'users'])->name('users');
+            Route::get('user/{id}', [AppController::class, 'user'])->name('user');
+            Route::get('user/{id}/rides', [AppController::class, 'user_rides'])->middleware('can:' . PermissionEnum::APP_USER_RIDES->value)->name('user_rides');
+            Route::get('user/{id}/tickets', [AppController::class, 'user_tickets'])->middleware('can:' . PermissionEnum::APP_USER_TICKETS->value)->name('user_tickets');
+        });
 
-        Route::get('drivers', [AppController::class, 'drivers'])->name('drivers');
-        Route::get('driver/{id}', [AppController::class, 'driver'])->name('driver');
-        Route::get('driver/{id}/rides', [AppController::class, 'driver_rides'])->name('driver_rides');
-        Route::get('driver/{id}/transactions', [AppController::class, 'driver_transactions'])->name('driver_transactions');
-        Route::get('driver/{id}/tickets', [AppController::class, 'driver_tickets'])->name('driver_tickets');
+        Route::middleware('can:' . PermissionEnum::APP_DRIVER_VIEW->value)->group(function () {
+            Route::get('drivers', [AppController::class, 'drivers'])->name('drivers');
+            Route::get('driver/{id}', [AppController::class, 'driver'])->name('driver');
+            Route::get('driver/{id}/rides', [AppController::class, 'driver_rides'])->middleware('can:' . PermissionEnum::APP_DRIVER_RIDES->value)->name('driver_rides');
+            Route::get('driver/{id}/transactions', [AppController::class, 'driver_transactions'])->middleware('can:' . PermissionEnum::APP_DRIVER_TRANSACTIONS->value)->name('driver_transactions');
+            Route::get('driver/{id}/tickets', [AppController::class, 'driver_tickets'])->middleware('can:' . PermissionEnum::APP_DRIVER_TICKETS->value)->name('driver_tickets');
+        });
 
         Route::get('vehicles', [AppController::class, 'vehicles'])->name('vehicles');
         Route::get('vehicle/{id}', [AppController::class, 'vehicle'])->name('vehicle');
     });
 
-
     Route::middleware('role:' . RoleEnum::ADMIN->value)->group(function () {
+
+        Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons');
         Route::match(['get', 'post'], 'users', [UserController::class, 'users'])->name('users');
         Route::name('user.')->prefix('user')->group(function () {
 
@@ -70,7 +69,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::any('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-
 
 Route::any('test', [TestController::class, 'test']);

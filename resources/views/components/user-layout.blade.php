@@ -15,7 +15,6 @@
              </div>
          </div>
 
-
          <div class="separator"></div>
 
          <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
@@ -25,24 +24,28 @@
                      href="{{ route('app.user', $user->id) }}">Overview</a>
              </li>
 
-             <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.user_rides')) active @endif"
-                     href="{{ route('app.user_rides', $user->id) }}">Ride
-                     History</a>
-             </li>
+             @can(\App\Enums\User\PermissionEnum::APP_USER_RIDES)
+                 <li class="nav-item">
+                     <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.user_rides')) active @endif"
+                         href="{{ route('app.user_rides', $user->id) }}">Ride
+                         History</a>
+                 </li>
+             @endcan
 
-             <li class="nav-item">
-                 <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.user_tickets')) active @endif"
-                     href="{{ route('app.user_tickets', $user->id) }}">
-                     Tickets</a>
-             </li>
+             @can(\App\Enums\User\PermissionEnum::APP_USER_TICKETS)
+                 <li class="nav-item">
+                     <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.user_tickets')) active @endif"
+                         href="{{ route('app.user_tickets', $user->id) }}">
+                         Tickets</a>
+                 </li>
+             @endcan
 
          </ul>
      </div>
  </div>
 
  {{ $slot }}
- 
+
 
  <div class="modal fade" id="createTicket" tabindex="-1" role="dialog" aria-labelledby="createTicketModalLabel"
      aria-hidden="true">

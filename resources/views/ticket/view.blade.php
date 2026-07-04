@@ -49,7 +49,21 @@
                                 </tr>
                                 <tr>
                                     <th class="fw-bolder">Phone Number </th>
-                                    <td> {{ $ticket->phone_number }}</td>
+                                    <td>
+                                        @if (in_array($ticket->type, [Type::USER_ACCOUNT, Type::USER_RIDE]))
+                                            @can(\App\Enums\User\PermissionEnum::APP_USER_MOBILE)
+                                                {{ $ticket->phone_number }}
+                                            @else
+                                                No Access
+                                            @endcan
+                                        @else
+                                            @can(\App\Enums\User\PermissionEnum::APP_DRIVER_MOBILE)
+                                                {{ $ticket->phone_number }}
+                                            @else
+                                                No Access
+                                            @endcan
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th class="fw-bolder">Text </th>
