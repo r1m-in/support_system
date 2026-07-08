@@ -26,8 +26,7 @@
                 <table class="table align-middle gs-0 gy-4 text-center table-hover">
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
-                            <th class="min-w-40px rounded-start text-center">ID</th>
-                            <th class="min-w-80px">Provider</th>
+                            <th class="min-w-40px rounded-start text-center">ID</th> 
                             <th class="min-w-125px">User</th>
                             <th class="min-w-125px">E-Mail ID</th>
                             <th class="min-w-125px">Phone Number</th>

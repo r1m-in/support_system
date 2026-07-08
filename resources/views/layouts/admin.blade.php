@@ -126,21 +126,46 @@
                                 </div>
                             @endcan
 
-                            <div class="menu-item">
-                                <a class="menu-link @if (request()->routeIs('app.vehicles')) active @endif"
-                                    href="{{ route('app.vehicles') }}">
-                                    <span class="menu-icon">
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path
-                                                    d="M192 0c-17.7 0-32 14.3-32 32l0 32 0 .2c-38.6 2.2-72.3 27.3-85.2 64.1L39.6 228.8C16.4 238.4 0 261.3 0 288L0 432l0 48c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-48 320 0 0 48c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-48 0-144c0-26.7-16.4-49.6-39.6-59.2L437.2 128.3c-12.9-36.8-46.6-62-85.2-64.1l0-.2 0-32c0-17.7-14.3-32-32-32L192 0zM165.4 128l181.2 0c13.6 0 25.7 8.6 30.2 21.4L402.9 224l-293.8 0 26.1-74.6c4.5-12.8 16.6-21.4 30.2-21.4zM96 288a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm288 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
-                                                    fill="currentColor" />
-                                            </svg>
+                            @can(\App\Enums\User\PermissionEnum::APP_CASHBACK_VIEW)
+                                <div class="menu-item">
+                                    <a class="menu-link @if (request()->routeIs('app.cashback')) active @endif"
+                                        href="{{ route('app.cashback') }}">
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none">
+                                                    <path opacity="0.3"
+                                                        d="M20 18H4C3.4 18 3 17.6 3 17V7C3 6.4 3.4 6 4 6H20C20.6 6 21 6.4 21 7V17C21 17.6 20.6 18 20 18ZM12 8C10.3 8 9 9.8 9 12C9 14.2 10.3 16 12 16C13.7 16 15 14.2 15 12C15 9.8 13.7 8 12 8Z"
+                                                        fill="currentColor" />
+                                                    <path
+                                                        d="M18 6H20C20.6 6 21 6.4 21 7V9C19.3 9 18 7.7 18 6ZM6 6H4C3.4 6 3 6.4 3 7V9C4.7 9 6 7.7 6 6ZM21 17V15C19.3 15 18 16.3 18 18H20C20.6 18 21 17.6 21 17ZM3 15V17C3 17.6 3.4 18 4 18H6C6 16.3 4.7 15 3 15Z"
+                                                        fill="currentColor" />
+                                                </svg>
+                                            </span>
                                         </span>
-                                    </span>
-                                    <span class="menu-title">Vehicles</span>
-                                </a>
-                            </div>
+                                        <span class="menu-title">Drivers Cashback</span>
+                                    </a>
+                                </div>
+                            @endcan
+
+
+                            @can(\App\Enums\User\PermissionEnum::APP_VEHICLE_VIEW)
+                                <div class="menu-item">
+                                    <a class="menu-link @if (request()->routeIs('app.vehicles')) active @endif"
+                                        href="{{ route('app.vehicles') }}">
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path
+                                                        d="M192 0c-17.7 0-32 14.3-32 32l0 32 0 .2c-38.6 2.2-72.3 27.3-85.2 64.1L39.6 228.8C16.4 238.4 0 261.3 0 288L0 432l0 48c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-48 320 0 0 48c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-48 0-144c0-26.7-16.4-49.6-39.6-59.2L437.2 128.3c-12.9-36.8-46.6-62-85.2-64.1l0-.2 0-32c0-17.7-14.3-32-32-32L192 0zM165.4 128l181.2 0c13.6 0 25.7 8.6 30.2 21.4L402.9 224l-293.8 0 26.1-74.6c4.5-12.8 16.6-21.4 30.2-21.4zM96 288a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm288 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                                                        fill="currentColor" />
+                                                </svg>
+                                            </span>
+                                        </span>
+                                        <span class="menu-title">Vehicles</span>
+                                    </a>
+                                </div>
+                            @endcan
 
                             @can(\App\Enums\User\PermissionEnum::TICKETS)
                                 <div class="menu-item">

@@ -37,7 +37,13 @@
                             <tr>
                                 <td class="text-dark text-center"> {{ $user->app_user_id }} </td>
                                 <td class="text-dark"> {{ $user->name }} </td>
-                                <td class="text-dark"> {{ $user->phone }} </td>
+                                <td class="text-dark">
+                                    @can(\App\Enums\User\PermissionEnum::APP_USER_MOBILE)
+                                        {{ $user->phone ?? ' - ' }}
+                                    @else
+                                        No Access
+                                    @endcan
+                                </td>
                                 <td class="text-dark"> </td>
                                 <td class="text-dark"> {{ $user->status }} </td>
                                 <td class="text-center">

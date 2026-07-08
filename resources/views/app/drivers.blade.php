@@ -25,7 +25,7 @@
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
                             <th class="min-w-40px rounded-start text-center">App Driver ID</th>
-                            <th class="min-w-125px">Name</th> 
+                            <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">Phone Number</th>
                             <th class="min-w-125px text-center">Role</th>
                             <th class="min-w-125px text-center">Status</th>
@@ -37,7 +37,13 @@
                             <tr>
                                 <td class="text-dark fw-bolder text-center"> {{ $driver->app_driver_id }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->name }} </td>
-                                <td class="text-dark fw-bolder"> {{ $driver->phone }} </td> 
+                                <td class="text-dark fw-bolder">
+                                    @can(\App\Enums\User\PermissionEnum::APP_DRIVER_MOBILE)
+                                        {{ $driver->phone ?? ' - ' }}
+                                    @else
+                                        No Access
+                                    @endcan
+                                </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->role->role->name }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->status }} </td>
                                 <td class="text-center">
@@ -49,7 +55,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div> 
+            </div>
 
         </div>
     </div>

@@ -41,11 +41,19 @@ Route::middleware('auth')->group(function () {
             Route::get('driver/{id}', [AppController::class, 'driver'])->name('driver');
             Route::get('driver/{id}/rides', [AppController::class, 'driver_rides'])->middleware('can:' . PermissionEnum::APP_DRIVER_RIDES->value)->name('driver_rides');
             Route::get('driver/{id}/transactions', [AppController::class, 'driver_transactions'])->middleware('can:' . PermissionEnum::APP_DRIVER_TRANSACTIONS->value)->name('driver_transactions');
+            Route::get('driver/{id}/cashback', [AppController::class, 'driver_cashback'])->middleware('can:' . PermissionEnum::APP_DRIVER_CASHBACK->value)->name('driver_cashback');
             Route::get('driver/{id}/tickets', [AppController::class, 'driver_tickets'])->middleware('can:' . PermissionEnum::APP_DRIVER_TICKETS->value)->name('driver_tickets');
         });
 
-        Route::get('vehicles', [AppController::class, 'vehicles'])->name('vehicles');
-        Route::get('vehicle/{id}', [AppController::class, 'vehicle'])->name('vehicle');
+        Route::middleware('can:' . PermissionEnum::APP_CASHBACK_VIEW->value)->group(function () {
+            Route::get('cashback', [AppController::class, 'cashback'])->name('cashback');
+            Route::get('cashback/{id}', [AppController::class, 'cashback_view'])->name('cashback_view');
+        });
+
+        Route::middleware('can:' . PermissionEnum::APP_VEHICLE_VIEW->value)->group(function () {
+            Route::get('vehicles', [AppController::class, 'vehicles'])->name('vehicles');
+            Route::get('vehicle/{id}', [AppController::class, 'vehicle'])->name('vehicle');
+        });
     });
 
     Route::middleware('role:' . RoleEnum::ADMIN->value)->group(function () {

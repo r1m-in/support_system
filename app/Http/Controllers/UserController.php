@@ -58,7 +58,8 @@ class UserController extends Controller
         }
         $data['role'] = $role;
         $data['permissions'] = Permission::all();
-        $data['role_permissions'] = $role->permissions->pluck('id')->toArray();
+        $data['role_permissions'] = $role->permissions->pluck('name')->toArray();
+
         return view('users.role', $data);
     }
 
