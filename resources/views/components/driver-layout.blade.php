@@ -37,6 +37,13 @@
                          href="{{ route('app.driver_transactions', $driver->id) }}">Transcations</a>
                  </li>
              @endcan
+             
+             @can(\App\Enums\User\PermissionEnum::APP_DRIVER_CASHBACK)
+                 <li class="nav-item">
+                     <a class="nav-link text-active-primary py-3 me-6 @if (request()->routeIs('app.driver_cashback')) active @endif"
+                         href="{{ route('app.driver_cashback', $driver->id) }}">Cashback</a>
+                 </li>
+             @endcan
 
              @can(\App\Enums\User\PermissionEnum::APP_DRIVER_TICKETS)
                  <li class="nav-item">

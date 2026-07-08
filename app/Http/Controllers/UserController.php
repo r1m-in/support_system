@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ticket\Status;
 use App\Enums\User\RoleEnum;
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
@@ -15,7 +17,10 @@ class UserController extends Controller
 {
     public function dashboard()
     {
-        return view('dashboard');
+        $data['tickets'] = Ticket::count();
+        $data['tickets_open'] = Ticket::where('status', Status::OPEN)->count(); 
+
+        return view('dashboard', $data);
     }
 
     public function profile(Request $request)

@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\AppDriver;
-use App\Models\AppDriverTransaction;
-use App\Models\AppRequest;
 use App\Models\AppUser;
 use App\Models\AppUserRide;
 use App\Models\AppVehicle;
 use App\Models\Ticket;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Services\DynamoDbService;
 
@@ -127,9 +124,16 @@ class AppController extends Controller
 
         $transactions = $this->dynamoDb->driverTranscation('driver_wallet_transactions', $id);
 
-        $data['transactions'] = $transactions; 
+        $data['transactions'] = $transactions;
 
         return view('app.driver_transactions', $data);
+    }
+
+    public function driver_cashback($id)
+    {
+        $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
+
+        return view('app.driver_cashback', $data);
     }
 
     public function driver_tickets($id)
@@ -138,6 +142,17 @@ class AppController extends Controller
         $data['tickets'] = Ticket::where('main_key', $id)->paginate(10);
         return view('app.driver_tickets', $data);
     }
+
+    public function cashback()
+    {
+        return view('app.cashback');
+    }
+
+    public function cashback_view($id)
+    {
+        return view('app.cashback_view');
+    }
+
 
 
     public function vehicles(Request $request)
