@@ -21,7 +21,7 @@
                             <tr>
                                 <td>{{ date('dS M Y h:i a', strtotime($item['created_at'])) }}</td>
                                 <td>{{ $item['app_driver_id'] }}</td>
-                                <td>{{ $transaction['amount'] }}</td>
+                                <td>{{ $item['amount'] }}</td>
                             </tr>
                         @empty
                             <tr>
