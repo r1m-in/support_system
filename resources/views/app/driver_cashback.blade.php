@@ -22,8 +22,7 @@
                                     <td>{{ date('dS M Y h:i a', strtotime($transaction['created_at'])) }}</td>
                                     <td>{{ $transaction['request_from'] }}</td>
                                     <td>{{ $transaction['request_to'] }}</td>
-                                    <td>{{ $transaction['description'] }}</td>
-                                    <td>{{ $transaction['promo_code'] }}</td>
+                                    <td>{{ $transaction['description'] }}</td> 
                                     <td>{{ $transaction['amount'] }}</td>
                                 </tr>
                             @empty
