@@ -9,7 +9,7 @@
                 <table class="table align-middle gs-0 gy-4 text-center table-hover">
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
-                            <th class="min-w-100px rounded-start ps-2">Date</th> 
+                            <th class="min-w-100px rounded-start ps-2">Date</th>
                             <th class="min-w-100px">App Driver ID</th>
                             <th class="min-w-150px">Balance</th>
                             <th class="min-w-80px rounded-end pe-2">Actions</th>
@@ -22,7 +22,8 @@
                                 <td>{{ $item['app_driver_id'] ?? '' }}</td>
                                 <td>{{ $item['balance'] }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('app.driver_cashback', $item['driver_id']) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('app.driver_cashback', $item['driver_id']) }}"
+                                        class="btn btn-sm btn-primary">
                                         <i class="fas fa-eye"></i> View
                                     </a>
                                 </td>
@@ -35,6 +36,16 @@
                     </tbody>
                 </table>
             </div>
+
+            {{ $has_more }}
+
+            <div class="d-flex justify-content-between">
+                <a class="btn btn-primary" href="">Previous</a>
+                <a class="btn btn-primary" href="">Next</a>
+            </div>
+
+            {{ $next_page_token }}
+
 
         </div>
     </div>

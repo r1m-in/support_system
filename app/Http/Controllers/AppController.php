@@ -152,6 +152,9 @@ class AppController extends Controller
 
         $data['list'] = $results['items'];
 
+        $data['next_page_token'] = $results['next_page_token'];
+        $data['has_more'] = !is_null($results['next_page_token']);
+
         return view('app.cashback', $data);
     }
 
