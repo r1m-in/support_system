@@ -146,9 +146,13 @@ class AppController extends Controller
         return view('app.driver_tickets', $data);
     }
 
-    public function cashback()
+    public function cashback(Request $request)
     {
-        return view('app.cashback');
+        $results = $this->dynamoDb->scanWithPagination('driver_cashback', 10);
+
+        $data['list'] = $results['items'];
+
+        return view('app.cashback', $data);
     }
 
     public function cashback_view($id)

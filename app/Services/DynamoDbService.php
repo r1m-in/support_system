@@ -70,4 +70,40 @@ class DynamoDbService
 
       return $items;
    }
+
+   public function scanWithPagination(string $tableName, int $limit = 10, ?array $startKey = null)
+   {
+      $params = [
+         'TableName' => $tableName,
+         'Limit'     => $limit,
+      ];
+
+      // If a pagination cursor is provided, tell DynamoDB where to resume
+      if (!empty($startKey)) {
+         $params['ExclusiveStartKey'] = $startKey;
+      }
+
+      $result = $this->client->scan($params);
+
+      // Unmarshal the items
+      $items = [];
+      if (isset($result['Items'])) {
+         foreach ($result['Items'] as $item) {
+            $items[] = $this->marshaler->unmarshalItem($item);
+         }
+      }
+
+      // Capture the next page token if it exists
+      $nextPageKey = null;
+      if (isset($result['LastEvaluatedKey'])) {
+         // We keep it marshaled because we need to pass it back to AWS on the next call
+         $nextPageKey = $result['LastEvaluatedKey'];
+      }
+
+      return [
+         'items' => $items,
+         // Base64 encode the cursor so it can be cleanly sent over URLs/API queries
+         'next_page_token' => $nextPageKey ? base64_encode(json_encode($nextPageKey)) : null
+      ];
+   }
 }
