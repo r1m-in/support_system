@@ -148,12 +148,18 @@ class AppController extends Controller
 
     public function cashback(Request $request)
     {
-        $results = $this->dynamoDb->scanWithPagination('driver_cashback', 10);
+
+        $pageToken = $request->query('next_page_token');
+        $startKey = null;
+
+        if ($pageToken) {
+            $startKey = json_decode(base64_decode($pageToken), true);
+        }
+
+        $results = $this->dynamoDb->scanWithPagination('driver_cashback', 10, $startKey);
 
         $data['list'] = $results['items'];
-
-        $data['next_page_token'] = $results['next_page_token'];
-        $data['has_more'] = !is_null($results['next_page_token']);
+        $data['nextPageToken'] = $results['next_page_token'];
 
         return view('app.cashback', $data);
     }
