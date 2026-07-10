@@ -38,23 +38,23 @@
             </div>
 
 
-            <div class="flex justify-between items-center">
+            <div class="d-flex justify-content-between">
                 @if (request()->has('next_page_token'))
-                    <a href="{{ route('app.cashback') }}"
-                        class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition">
-                        ⏮️ First Page
-                    </a>
-                @else
-                    <div></div>
+                    <a href="{{ route('app.cashback') }}" class="btn btn-primary">
+                        << First Page </a>
+                        @else
+                            <span class="btn btn-primary disabled">
+                                End of Data
+                            </span>
                 @endif
 
                 @if ($nextPageToken)
                     <a href="{{ route('app.cashback', ['next_page_token' => $nextPageToken]) }}"
-                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition font-medium">
-                        Next Page ➡️
+                        class="btn btn-primary">
+                        Next Page >>
                     </a>
                 @else
-                    <span class="px-4 py-2 bg-gray-200 text-gray-400 rounded cursor-not-allowed">
+                    <span class="btn btn-primary disabled">
                         End of Data
                     </span>
                 @endif
