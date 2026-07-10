@@ -20,7 +20,7 @@
                         @forelse ($list as $item)
                             <tr>
                                 <td>{{ date('dS M Y h:i a', strtotime($item['created_at'])) }}</td>
-                                <td>{{ $item['app_driver_id'] }}</td>
+                                <td>{{ $item['app_driver_id'] ?? '' }}</td>
                                 <td>{{ $item['balance'] }}</td>
                             </tr>
                         @empty
