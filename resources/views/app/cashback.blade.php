@@ -44,8 +44,7 @@
                         << First Page </a>
                         @else
                             <span class="btn btn-primary disabled">
-                                End of Data
-                            </span>
+                                << First Page </span>
                 @endif
 
                 @if ($nextPageToken)
