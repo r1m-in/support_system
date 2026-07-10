@@ -13,7 +13,7 @@
                             <th class="min-w-100px">From</th>
                             <th class="min-w-100px">To</th>
                             <th class="min-w-150px">Description</th>
-                            <th class="min-w-80px rounded-end pe-2">Amount</th>
+                            <th class="min-w-80px rounded-end pe-2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +22,11 @@
                                 <td>{{ date('dS M Y h:i a', strtotime($item['created_at'])) }}</td>
                                 <td>{{ $item['app_driver_id'] ?? '' }}</td>
                                 <td>{{ $item['balance'] }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('app.driver_cashback', $item['driver_id']) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                </td>
                             </tr>
                         @empty
                             <tr>
