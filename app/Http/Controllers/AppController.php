@@ -133,6 +133,9 @@ class AppController extends Controller
     {
         $data['driver'] = AppDriver::where('id', $id)->firstOrFail();
 
+        $transactions = $this->dynamoDb->driverTranscation('driver_cashback_transactions', $id);
+        $data['transactions'] = $transactions;
+
         return view('app.driver_cashback', $data);
     }
 
