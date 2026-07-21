@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\User\PermissionEnum;
 use App\Models\AppDriver;
 use App\Models\AppUser;
 use App\Models\AppUserRide;
 use App\Models\AppVehicle;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Services\DynamoDbService;
 
 class AppController extends Controller
@@ -31,8 +33,11 @@ class AppController extends Controller
         if ($keyword) {
             $users = AppUser::latest()->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', "%$keyword%")
-                    ->orWhere('app_user_id', 'LIKE', "%$keyword%")
-                    ->orWhere('phone', 'LIKE', "%$keyword%");
+                    ->orWhere('app_user_id', 'LIKE', "%$keyword%");
+
+                if (Auth::user()->can(PermissionEnum::APP_USER_MOBILE)) {
+                    $query->orWhere('phone', 'LIKE', "%$keyword%");
+                }
             })->latest()->get();
         }
 
@@ -84,8 +89,11 @@ class AppController extends Controller
         if ($keyword) {
             $drivers = AppDriver::latest()->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', "%$keyword%")
-                    ->orWhere('app_driver_id', 'LIKE', "%$keyword%")
-                    ->orWhere('phone', 'LIKE', "%$keyword%");
+                    ->orWhere('app_driver_id', 'LIKE', "%$keyword%");
+
+                if (Auth::user()->can(PermissionEnum::APP_DRIVER_MOBILE)) {
+                    $query->orWhere('phone', 'LIKE', "%$keyword%");
+                }
             })->latest()->get();
         }
 

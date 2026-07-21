@@ -14,6 +14,7 @@
                                 <th class="min-w-100px">From</th>
                                 <th class="min-w-100px">To</th>
                                 <th class="min-w-150px">Description</th>
+                                <th class="min-w-80px">Type</th>
                                 <th class="min-w-80px rounded-end pe-2">Amount</th>
                             </tr>
                         </thead>
@@ -23,8 +24,19 @@
                                     <td>{{ date('dS M Y h:i a', strtotime($transaction['created_at'])) }}</td>
                                     <td>{{ $transaction['request_from'] }}</td>
                                     <td>{{ $transaction['request_to'] }}</td>
-                                    <td>{{ $transaction['description'] }}</td> 
-                                    <td>{{ $transaction['amount'] }}</td>
+                                    <td>{{ $transaction['description'] }}</td>
+                                    <td>{{ $transaction['type'] }}</td>
+                                    <td><span
+                                            class="fw-bolder @if ($transaction['type'] == 'CREDIT') text-success
+                                    @else
+                                        text-danger @endif ">
+                                            @if ($transaction['type'] == 'CREDIT')
+                                                +
+                                            @else
+                                                -
+                                            @endif {{ $transaction['amount'] }}
+                                        </span>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

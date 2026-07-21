@@ -2,8 +2,8 @@
     <x-slot name="title">App Driver Rides: {{ $driver->name }}</x-slot>
 
     <x-driver-layout :name="$driver->name" :code="$driver->app_driver_id" :driver="$driver">
-     
-          <div class="card">
+
+        <div class="card">
             <div class="card-header border-0 pt-5">
                 <div class="card-title">
 
@@ -42,6 +42,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                date_default_timezone_set('Asia/Kolkata');
+                            @endphp
                             @forelse ($rides as $ride)
                                 <tr>
                                     <td class="text-start">{{ $ride->request->from_location }}</td>
