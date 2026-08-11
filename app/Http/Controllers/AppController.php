@@ -203,4 +203,9 @@ class AppController extends Controller
         $data['vehicle'] = AppVehicle::where('id', $id)->firstOrFail();
         return view('app.vehicle', $data);
     }
+
+    
+
+
+
 }

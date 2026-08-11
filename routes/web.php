@@ -2,6 +2,7 @@
 
 use App\Enums\User\PermissionEnum;
 use App\Enums\User\RoleEnum;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,11 @@ Route::middleware('auth')->group(function () {
             Route::get('vehicles', [AppController::class, 'vehicles'])->name('vehicles');
             Route::get('vehicle/{id}', [AppController::class, 'vehicle'])->name('vehicle');
         });
+    });
+
+
+    Route::name('api.')->prefix('api')->group(function () {
+        Route::get('cities', [ApiController::class, 'cities'])->name('cities');
     });
 
     Route::middleware('role:' . RoleEnum::ADMIN->value)->group(function () {
