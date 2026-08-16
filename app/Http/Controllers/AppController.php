@@ -207,19 +207,23 @@ class AppController extends Controller
 
     public function owners(Request $request)
     {
-        $drivers = collect();
+        $drivers = collect(); 
 
         $data['search'] = ($request->get('q') ? $request->get('q') : '');
 
         $keyword = $data['search'];
 
         if ($keyword) {
-            $drivers = AppDriver::latest()->where(function ($query) use ($keyword) {
+            $drivers = AppDriver::with('roles')->latest()->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', "%$keyword%")
                     ->orWhere('app_driver_id', 'LIKE', "%$keyword%")
                     ->orWhere('phone', 'LIKE', "%$keyword%");
-            })->latest()->get();
+            })->whereHas('roles', function ($query) {
+                $query->where('role_id', '4b99bc3a-13bc-11f0-a1a1-0a74e7f1ccd1');
+            })->get();
         }
+
+        // OWNER => 4b99bc3a-13bc-11f0-a1a1-0a74e7f1ccd1
 
         $data['drivers']  = $drivers;
 
