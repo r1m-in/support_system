@@ -204,8 +204,25 @@ class AppController extends Controller
         return view('app.vehicle', $data);
     }
 
-    
 
+    public function owners(Request $request)
+    {
+        $drivers = collect();
 
+        $data['search'] = ($request->get('q') ? $request->get('q') : '');
 
+        $keyword = $data['search'];
+
+        if ($keyword) {
+            $drivers = AppDriver::latest()->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', "%$keyword%")
+                    ->orWhere('app_driver_id', 'LIKE', "%$keyword%")
+                    ->orWhere('phone', 'LIKE', "%$keyword%");
+            })->latest()->get();
+        }
+
+        $data['drivers']  = $drivers;
+
+        return view('app.owners', $data);
+    }
 }

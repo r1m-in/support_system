@@ -11,7 +11,6 @@ enum RoleEnum: string
     case MANAGER = 'manager';
     case TEAM_LEADER = 'team-leader';
 
-
     public function label(): string
     {
         return match ($this) {
@@ -20,7 +19,8 @@ enum RoleEnum: string
             self::STAFF => 'Staff',
             self::SENIOR_STAFF => 'Senior Staff',
             self::MANAGER => 'Manager',
-            self::TEAM_LEADER => 'Team Leader',
+            self::TEAM_LEADER => 'Team Leader', 
+            default => 'Contact Developer'
         };
     }
 }

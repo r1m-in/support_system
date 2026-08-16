@@ -20,6 +20,9 @@ enum PermissionEnum: string
 
     case APP_CASHBACK_VIEW = 'app_cashback_view';
 
+    case APP_OWNER_VIEW = 'app_owner_view';
+    case APP_OWNER_REQUEST_ACCESS = 'app_owner_request_access';
+
     case TICKETS = 'tickets';
 
     case ABCD = 'abcd';
@@ -39,6 +42,8 @@ enum PermissionEnum: string
             self::APP_DRIVER_CASHBACK => 'Cashback',
             self::APP_VEHICLE_VIEW => 'View',
             self::APP_CASHBACK_VIEW => 'All',
+            self::APP_OWNER_VIEW => 'View',
+            self::APP_OWNER_REQUEST_ACCESS => 'Request Access',
             self::TICKETS => 'All',
         };
     }
@@ -65,6 +70,10 @@ enum PermissionEnum: string
             ],
             'App Vehicles' => [
                 self::APP_VEHICLE_VIEW
+            ],
+            'App Owners' => [
+                self::APP_OWNER_VIEW,
+                self::APP_OWNER_REQUEST_ACCESS
             ],
             'Tickets' => [
                 self::TICKETS,

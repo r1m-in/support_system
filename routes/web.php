@@ -51,6 +51,11 @@ Route::middleware('auth')->group(function () {
             Route::get('cashback/{id}', [AppController::class, 'cashback_view'])->name('cashback_view');
         });
 
+        Route::middleware('can:' . PermissionEnum::APP_OWNER_VIEW->value)->group(function () {
+            Route::get('owners', [AppController::class, 'owners'])->name('owners');
+            Route::get('owner/{id}', [AppController::class, 'owner'])->name('owner');
+        });
+
         Route::middleware('can:' . PermissionEnum::APP_VEHICLE_VIEW->value)->group(function () {
             Route::get('vehicles', [AppController::class, 'vehicles'])->name('vehicles');
             Route::get('vehicle/{id}', [AppController::class, 'vehicle'])->name('vehicle');

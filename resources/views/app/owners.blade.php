@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <x-slot name="title">App Drivers</x-slot>
+    <x-slot name="title">App Owners</x-slot>
 
     <div class="card mb-5 mb-xl-8">
         <div class="card-header border-0 pt-5">

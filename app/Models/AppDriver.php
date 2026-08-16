@@ -27,6 +27,11 @@ class AppDriver extends Model
       return $this->hasOne(AppVehicle::class, 'driver_id', 'id');
    }
 
+   public function roles()
+   {
+      return $this->hasMany(AppDriverRole::class, 'driver_id', 'id');
+   }
+
    public function role()
    {
       return $this->hasOne(AppDriverRole::class, 'driver_id', 'id');
