@@ -7,6 +7,7 @@ use App\Models\AppDriver;
 use App\Models\AppUser;
 use App\Models\AppUserRide;
 use App\Models\AppVehicle;
+use App\Models\AccessRequest;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -207,7 +208,22 @@ class AppController extends Controller
 
     public function owners(Request $request)
     {
-        $drivers = collect(); 
+
+        if ($request->requestOwnerAccess) {
+
+            AccessRequest::create([
+                'user_id' => Auth::user()->id,
+                'owner_uid' => $request->owner_uid,
+                'owner_name' => $request->owner_name,
+                'owner_phone' => $request->owner_phone,
+                'owner_email' => $request->owner_email,
+                'note' => $request->note
+            ]);
+
+            return redirect()->route('app.owners')->with('success', 'Access Requested Successfully');
+        }
+
+        $drivers = collect();
 
         $data['search'] = ($request->get('q') ? $request->get('q') : '');
 

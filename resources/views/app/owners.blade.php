@@ -51,9 +51,12 @@
                                 </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->status }} </td>
                                 <td class="text-center">
-                                    <a href="{{ route('app.driver', $driver->id) }}" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-eye"></i> View
-                                    </a>
+                                    <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#requestOwnerAccess" data-owner_uid="{{ $driver->id }}"
+                                        data-owner_name="{{ $driver->name }}" data-owner_phone="{{ $driver->phone }}"
+                                        data-owner_email="{{ $driver->email }}">
+                                        <i class="fas fa-user-lock"></i> Request Access
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -63,5 +66,74 @@
 
         </div>
     </div>
+
+
+
+    <div class="modal fade" id="requestOwnerAccess" tabindex="-1" role="dialog"
+        aria-labelledby="requestOwnerAccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="d-flex flex-row-reverse">
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <span class="svg-icon svg-icon-2x"><i class="fa fas fa-times"></i></span>
+                        </div>
+                    </div>
+
+                    <form method="POST">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="owner_uid" class="form-label required">Owner UID</label>
+                            <input type="text" name="owner_uid" id="owner_uid" class="form-control" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="owner_name" class="form-label required">Name</label>
+                            <input type="text" name="owner_name" id="owner_name" class="form-control" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="owner_phone" class="form-label required">Phone Number</label>
+                            <input type="text" name="owner_phone" id="owner_phone" class="form-control" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="owner_email" class="form-label required">E-Mail ID</label>
+                            <input type="text" name="owner_email" id="owner_email" class="form-control" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="note" class="form-label required">Note</label>
+                            <textarea name="note" id="note" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary float-right" name="requestOwnerAccess"
+                                value="Request Owner Access"> Request Access </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <x-slot:scripts>
+        <script>
+            var requestOwnerAccess = document.getElementById('requestOwnerAccess')
+            editShop.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget
+                requestOwnerAccess.querySelector('#owner_uid').value = button.getAttribute('data-owner_uid')
+                requestOwnerAccess.querySelector('#owner_name').value = button.getAttribute('data-owner_name')
+                requestOwnerAccess.querySelector('#owner_phone').value = button.getAttribute('data-owner_phone')
+                requestOwnerAccess.querySelector('#owner_email').value = button.getAttribute('data-owner_email')
+            });
+        </script>
+    </x-slot:scripts>
 
 </x-admin-layout>
