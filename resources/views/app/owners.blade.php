@@ -86,22 +86,22 @@
                         @csrf
                         <div class="mb-4">
                             <label for="owner_uid" class="form-label required">Owner UID</label>
-                            <input type="text" name="owner_uid" id="owner_uid" class="form-control" required>
+                            <input type="text" name="owner_uid" id="owner_uid" class="form-control" readonly required>
                         </div>
 
                         <div class="mb-4">
                             <label for="owner_name" class="form-label required">Name</label>
-                            <input type="text" name="owner_name" id="owner_name" class="form-control" required>
+                            <input type="text" name="owner_name" id="owner_name" class="form-control" readonly required>
                         </div>
 
                         <div class="mb-4">
                             <label for="owner_phone" class="form-label required">Phone Number</label>
-                            <input type="text" name="owner_phone" id="owner_phone" class="form-control" required>
+                            <input type="text" name="owner_phone" id="owner_phone" class="form-control" readonly required>
                         </div>
 
                         <div class="mb-4">
                             <label for="owner_email" class="form-label required">E-Mail ID</label>
-                            <input type="text" name="owner_email" id="owner_email" class="form-control" required>
+                            <input type="text" name="owner_email" id="owner_email" class="form-control" readonly required>
                         </div>
 
                         <div class="mb-4">
