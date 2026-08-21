@@ -126,7 +126,7 @@
     <x-slot:scripts>
         <script>
             var requestOwnerAccess = document.getElementById('requestOwnerAccess')
-            editShop.addEventListener('show.bs.modal', function(event) {
+            requestOwnerAccess.addEventListener('show.bs.modal', function(event) {
                 var button = event.relatedTarget
                 requestOwnerAccess.querySelector('#owner_uid').value = button.getAttribute('data-owner_uid')
                 requestOwnerAccess.querySelector('#owner_name').value = button.getAttribute('data-owner_name')
