@@ -245,4 +245,8 @@ class AppController extends Controller
 
         return view('app.owners', $data);
     }
+
+    
+
+
 }

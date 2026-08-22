@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccessController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +28,8 @@ Route::middleware('auth')->group(function () {
         Route::get('index', [TicketController::class, 'index'])->middleware('can:' . PermissionEnum::TICKETS->value)->name('index');
         Route::match(['get', 'post'], '{id}', [TicketController::class, 'view'])->name('view');
     });
+
+    Route::any('access_requested', [AccessController::class, 'access_requested'])->name('access_requested');
 
     Route::name('app.')->prefix('app')->group(function () {
 
@@ -53,7 +56,6 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('can:' . PermissionEnum::APP_OWNER_VIEW->value)->group(function () {
             Route::get('owners', [AppController::class, 'owners'])->name('owners');
-            Route::get('owner/{id}', [AppController::class, 'owner'])->name('owner');
         });
 
         Route::middleware('can:' . PermissionEnum::APP_VEHICLE_VIEW->value)->group(function () {
@@ -68,6 +70,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:' . RoleEnum::ADMIN->value)->group(function () {
+
+        Route::any('requested_access', [AccessController::class, 'requested_access'])->name('requested_access');
 
         Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons');
         Route::match(['get', 'post'], 'users', [UserController::class, 'users'])->name('users');
