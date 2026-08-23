@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::middleware('can:' . PermissionEnum::APP_OWNER_VIEW->value)->group(function () {
-            Route::get('owners', [AppController::class, 'owners'])->name('owners');
+            Route::any('owners', [AppController::class, 'owners'])->name('owners');
         });
 
         Route::middleware('can:' . PermissionEnum::APP_VEHICLE_VIEW->value)->group(function () {
