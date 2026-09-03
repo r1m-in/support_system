@@ -12,6 +12,7 @@ use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\DynamoDbService;
+use Illuminate\Support\Facades\Cache;
 
 class AppController extends Controller
 {
@@ -238,7 +239,7 @@ class AppController extends Controller
                 $query->where('role_id', '4b99bc3a-13bc-11f0-a1a1-0a74e7f1ccd1');
             })->get();
         } else {
-            $drivers = AppDriver::with('roles')->latest()->limit(100)->get();
+            $drivers = Cache::remember('owners', 60 * 60, fn() =>  AppDriver::with('roles')->latest()->limit(100)->get());
         }
 
         // OWNER => 4b99bc3a-13bc-11f0-a1a1-0a74e7f1ccd1

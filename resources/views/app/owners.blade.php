@@ -24,7 +24,7 @@
                 <table id="datatable" class="table align-middle gs-0 gy-4 text-center table-hover">
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
-                            <th class="min-w-40px rounded-start text-center">App Driver ID</th>
+                            <th class="min-w-40px rounded-start text-center">App ID</th>
                             <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">Phone Number</th>
                             <th class="min-w-125px text-center">Role</th>
