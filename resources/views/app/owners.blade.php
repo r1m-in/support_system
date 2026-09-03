@@ -21,7 +21,7 @@
         <div class="card-body py-3">
             <x-alert />
             <div class="table-responsive">
-                <table class="table align-middle gs-0 gy-4 text-center table-hover">
+                <table id="datatable" class="table align-middle gs-0 gy-4 text-center table-hover">
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
                             <th class="min-w-40px rounded-start text-center">App Driver ID</th>
@@ -29,6 +29,7 @@
                             <th class="min-w-125px">Phone Number</th>
                             <th class="min-w-125px text-center">Role</th>
                             <th class="min-w-125px text-center">Status</th>
+                            <th class="min-w-100px text-center">Created At</th>
                             <th class="min-w-100px text-center rounded-end">Actions</th>
                         </tr>
                     </thead>
@@ -50,6 +51,7 @@
                                     @endforeach
                                 </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->status }} </td>
+                                <td class="text-dark fw-bolder"> {{ $driver->created_at->format('dS M Y h:i a') }} </td>
                                 <td class="text-center">
                                     <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal"
                                         data-bs-target="#requestOwnerAccess" data-owner_uid="{{ $driver->id }}"
