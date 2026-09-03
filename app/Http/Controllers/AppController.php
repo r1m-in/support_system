@@ -237,6 +237,8 @@ class AppController extends Controller
             })->whereHas('roles', function ($query) {
                 $query->where('role_id', '4b99bc3a-13bc-11f0-a1a1-0a74e7f1ccd1');
             })->get();
+        } else {
+            $drivers = AppDriver::with('roles')->latest()->limit(100)->get();
         }
 
         // OWNER => 4b99bc3a-13bc-11f0-a1a1-0a74e7f1ccd1
@@ -245,8 +247,4 @@ class AppController extends Controller
 
         return view('app.owners', $data);
     }
-
-    
-
-
 }
