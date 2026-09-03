@@ -24,7 +24,8 @@
                 <table id="datatable" class="table align-middle gs-0 gy-4 text-center table-hover">
                     <thead>
                         <tr class="fw-bolder text-white bg-dark">
-                            <th class="min-w-40px rounded-start text-center">App ID</th>
+                            <th class="min-w-40px rounded-start text-center">ID</th>
+                            <th class="min-w-40px text-center">App ID</th>
                             <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">Phone Number</th>
                             <th class="min-w-125px text-center">Role</th>
@@ -34,8 +35,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($drivers as $driver)
+                        @foreach ($drivers as $key => $driver)
                             <tr>
+                                <td class="text-dark fw-bolder text-center"> {{ $key }} </td>
                                 <td class="text-dark fw-bolder text-center"> {{ $driver->app_driver_id }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->name }} </td>
                                 <td class="text-dark fw-bolder">
@@ -88,22 +90,26 @@
                         @csrf
                         <div class="mb-4">
                             <label for="owner_uid" class="form-label required">Owner UID</label>
-                            <input type="text" name="owner_uid" id="owner_uid" class="form-control" readonly required>
+                            <input type="text" name="owner_uid" id="owner_uid" class="form-control" readonly
+                                required>
                         </div>
 
                         <div class="mb-4">
                             <label for="owner_name" class="form-label required">Name</label>
-                            <input type="text" name="owner_name" id="owner_name" class="form-control" readonly required>
+                            <input type="text" name="owner_name" id="owner_name" class="form-control" readonly
+                                required>
                         </div>
 
                         <div class="mb-4">
                             <label for="owner_phone" class="form-label required">Phone Number</label>
-                            <input type="text" name="owner_phone" id="owner_phone" class="form-control" readonly required>
+                            <input type="text" name="owner_phone" id="owner_phone" class="form-control" readonly
+                                required>
                         </div>
 
                         <div class="mb-4">
                             <label for="owner_email" class="form-label required">E-Mail ID</label>
-                            <input type="text" name="owner_email" id="owner_email" class="form-control" readonly required>
+                            <input type="text" name="owner_email" id="owner_email" class="form-control" readonly
+                                required>
                         </div>
 
                         <div class="mb-4">
