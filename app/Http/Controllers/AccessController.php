@@ -68,6 +68,41 @@ class AccessController extends Controller
       return view('requested_access', $data);
    }
 
+   // Admin
+   public function access_owner_panel(string $uid)
+   {
+      $url = 'https://api.pikbike.com/user/support/authorize';
+      $apiKey = 'PIK_PT2fGnrMJe63CyaK6EBr9zgvCWvd4Jec';
+      $apiEncipt = 'dovStLCbAAX6nOk9';
+
+      $payloadData = [
+         'owner_id' => $uid,
+         'staff_id' => 'Admin',
+      ];
+
+      $encryptedPayload = $this->encryptPayload($payloadData, $apiEncipt);
+
+      $headers = [
+         'device_type' => 'web',
+         'Content-Type' => 'application/json',
+      ];
+
+      $response = Http::withHeaders($headers)->post(
+         $url,
+         [
+            'api_key' => $apiKey,
+            'payload' => $encryptedPayload
+         ]
+      );
+
+      if ($response->status() == 201 && isset($response['code'])) {
+         $accessCode = $response['code'];
+         return redirect()->to('https://owner.pikbike.com/?auth_code=' . $accessCode);
+      } else {
+         echo 'Error';
+      }
+   }
+
 
    public function access_requested(Request $request)
    {

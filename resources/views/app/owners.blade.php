@@ -55,12 +55,17 @@
                                 <td class="text-dark fw-bolder"> {{ $driver->status }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->created_at->format('dS M Y h:i a') }} </td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#requestOwnerAccess" data-owner_uid="{{ $driver->id }}"
-                                        data-owner_name="{{ $driver->name }}" data-owner_phone="{{ $driver->phone }}"
-                                        data-owner_email="{{ $driver->email }}">
-                                        <i class="fas fa-user-lock"></i> Request Access
-                                    </button>
+                                    @role(\App\Enums\User\RoleEnum::ADMIN)
+                                        <a target=_blank href="{{ route('access_owner_panel', $driver->id) }}"
+                                            class="btn btn-sm btn-dark">Access Owner Pannel</a>
+                                    @else
+                                        <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#requestOwnerAccess" data-owner_uid="{{ $driver->id }}"
+                                            data-owner_name="{{ $driver->name }}" data-owner_phone="{{ $driver->phone }}"
+                                            data-owner_email="{{ $driver->email }}">
+                                            <i class="fas fa-user-lock"></i> Request Access
+                                        </button>
+                                    @endrole
                                 </td>
                             </tr>
                         @endforeach

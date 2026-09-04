@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AccessController;
+use App\Http\Controllers\ExportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -71,7 +72,13 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:' . RoleEnum::ADMIN->value)->group(function () {
 
+        Route::get('access_owner_panel/{uid}', [AccessController::class, 'access_owner_panel'])->name('access_owner_panel');
+
         Route::any('requested_access', [AccessController::class, 'requested_access'])->name('requested_access');
+
+        Route::name('export.')->prefix('export')->group(function () {
+            Route::get('owners', [ExportController::class, 'owners'])->name('owners');
+        });
 
         Route::match(['get', 'post'], 'reasons', [TicketController::class, 'reasons'])->name('reasons');
         Route::match(['get', 'post'], 'users', [UserController::class, 'users'])->name('users');
