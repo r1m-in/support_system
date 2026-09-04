@@ -37,7 +37,7 @@
                     <tbody>
                         @foreach ($drivers as $key => $driver)
                             <tr>
-                                <td class="text-dark fw-bolder text-center"> {{ $key }} </td>
+                                <td class="text-dark fw-bolder text-center"> {{ $key + 1 }} </td>
                                 <td class="text-dark fw-bolder text-center"> {{ $driver->app_driver_id }} </td>
                                 <td class="text-dark fw-bolder"> {{ $driver->name }} </td>
                                 <td class="text-dark fw-bolder">
@@ -57,7 +57,7 @@
                                 <td class="text-center">
                                     @role(\App\Enums\User\RoleEnum::ADMIN)
                                         <a target=_blank href="{{ route('access_owner_panel', $driver->id) }}"
-                                            class="btn btn-sm btn-dark">Access Owner Pannel</a>
+                                            class="btn btn-sm btn-dark">Access Owner Panel</a>
                                     @else
                                         <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal"
                                             data-bs-target="#requestOwnerAccess" data-owner_uid="{{ $driver->id }}"

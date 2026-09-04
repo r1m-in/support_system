@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Exception;
 use App\Enums\AccessStatus;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AccessController extends Controller
@@ -64,7 +65,34 @@ class AccessController extends Controller
          }
       }
 
-      $data['accessRequests'] = AccessRequest::latest()->paginate(12);
+      $data['search'] = ($request->get('q') ? $request->get('q') : '');
+
+      $data['users'] = User::latest()->get();
+
+      $keyword = $data['search'];
+
+      $accessRequests = AccessRequest::latest();
+
+      if ($request->get('q')) {
+         $accessRequests->where(function ($query) use ($keyword) {
+            $query->where('owner_name', 'LIKE', "%$keyword%")
+               ->orWhere('owner_phone', 'LIKE', "%$keyword%")
+               ->orWhere('owner_email', 'LIKE', "%$keyword%")
+               ->orWhere('note', 'LIKE', "%$keyword%");
+         });
+      }
+
+      if ($request->user) {
+         $accessRequests->where('user_id', $request->user);
+      }
+
+      if ($request->status) {
+         $accessRequests->where('status', $request->status);
+      }
+
+      $data['accessRequests'] = $accessRequests->paginate(12);
+
+
       return view('requested_access', $data);
    }
 
@@ -106,7 +134,12 @@ class AccessController extends Controller
 
    public function access_requested(Request $request)
    {
-      $data['accessRequests'] = AccessRequest::latest()->where('user_id', Auth::user()->id)->paginate(12);
+
+
+      $accessRequests = AccessRequest::latest();
+
+      $data['accessRequests'] = $accessRequests->where('user_id', Auth::user()->id)->paginate(12);
+
       return view('access_requested', $data);
    }
 

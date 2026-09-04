@@ -15,8 +15,12 @@
             </div>
             <div class="card-toolbar">
                 <form method="GET" class="input-group mb-3">
+
+                    <input type="date" name="from" class="form-control rounded-start">
+                    <input type="date" name="to" class="form-control">
+
                     <input type="text" name="q" value="{{ $search }}" placeholder="query"
-                        class="form-control rounded-start">
+                        class="form-control">
                     <div class="input-group-append">
                         <button class="btn btn-primary rounded-0 rounded-end" type="submit"> <i
                                 class="fas fa-search"></i></button>

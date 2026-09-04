@@ -4,7 +4,36 @@
 
 
     <div class="card mb-5 mb-xl-8">
-        <div class="card-body py-3"> 
+        <div class="card-header border-0 pt-5">
+            <div class="card-title">
+
+            </div>
+            <div class="card-toolbar">
+                <form method="GET" class="input-group mb-3">
+                    <select name="user" class="form-select rounded-0 rounded-start">
+                        <option value="">All Staff</option>
+                        @foreach ($users as $user)
+                            <option @if (request()->user == $user->id) selected @endif value="{{ $user->id }}">
+                                {{ $user->name }} ({{ $user->phone_number }})</option>
+                        @endforeach
+                    </select>
+                    <select name="status" class="form-select rounded-0">
+                        <option value="">All Statuses</option>
+                        @foreach (\App\Enums\AccessStatus::cases() as $case)
+                            <option @if (request()->status == $case->value) selected @endif value="{{ $case->value }}">
+                               {{  $case->label() }} </option>
+                        @endforeach
+                    </select>
+                    <input type="text" name="q" value="{{ $search }}" placeholder="query"
+                        class="form-control rounded-0">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary rounded-0 rounded-end" type="submit"> <i
+                                class="fas fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card-body py-3">
             <div class="table-responsive">
                 <table class="table align-middle gs-0 gy-4 text-center table-hover">
                     <thead>
@@ -18,7 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($accessRequests as $single)
+                        @forelse ($accessRequests as $single)
                             <tr>
                                 <td class="text-dark fw-bolder text-center"> {{ $single->id }} </td>
                                 <td class="text-dark fw-bolder"> {{ $single->user->name }}
@@ -26,7 +55,8 @@
                                     <br>
                                     {{ $single->user->email }}
                                 </td>
-                                <td class="text-dark fw-bolder"> {{ $single->owner_name }} ({{ $single->owner_phone }})
+                                <td class="text-dark fw-bolder"> {{ $single->owner_name }}
+                                    ({{ $single->owner_phone }})
                                     <br> {{ $single->owner_email }}
                                 </td>
                                 <td>{{ $single->note }}</td>
@@ -48,7 +78,11 @@
                                     @endif
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center fw-bolder">No Results</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
